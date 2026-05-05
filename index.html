@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1F2F2A">
+<title>Welcome to the Farmhouse — Seneca Lake Wine Trail</title>
+
+<!-- =============================================================
+     Edit-friendly single-page guide.
+     To add or remove items: scroll down to the section marked
+     "EDITABLE CONTENT BELOW" and follow the patterns. No build
+     step. Save the file, commit, push.
+     ============================================================= -->
+
+<style>
+  /* ---- Brand palette ----
+     Deep Forest Green  #1F2F2A   primary bg / hero
+     Forest Mid         #2A3D35   gradient mid stop
+     Forest Light       #3D5C50   gradient bottom stop
+     Ivory / Linen      #F5F2EB   text on dark, card surface
+     Matte Black        #1A1A1A   primary text on light cards
+     Soft Sand          #D8CFC4   dividers, subtle accents
+     Warm Clay          #C6A27E   buttons, highlights
+     Antique Gold       #B59A6A   premium markers (eyebrow, signature)
+     ----------------------------- */
+  :root {
+    --green-deep: #1F2F2A;
+    --green-mid:  #2A3D35;
+    --green-light:#3D5C50;
+    --ivory:      #F5F2EB;
+    --black:      #1A1A1A;
+    --sand:       #D8CFC4;
+    --clay:       #C6A27E;
+    --gold:       #B59A6A;
+
+    --ink:        var(--black);
+    --ink-dark:   var(--ivory);
+    --muted:      #6B7570;
+    --muted-dark: #C9C2B5;
+    --card:       var(--ivory);
+    --line:       var(--sand);
+    --accent:     var(--clay);
+    --accent-ink: var(--black);
+
+    --shadow:     0 1px 2px rgba(0,0,0,.18), 0 6px 22px rgba(0,0,0,.18);
+    --shadow-lg:  0 2px 4px rgba(0,0,0,.22), 0 12px 36px rgba(0,0,0,.22);
+    --radius:     14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink-dark);
+    background: var(--green-deep);
+    background-image: linear-gradient(180deg,
+      var(--green-deep) 0%,
+      var(--green-mid)  55%,
+      var(--green-light) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--clay); text-decoration: none; }
+  a:hover, a:focus { text-decoration: underline; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px 56px; }
+
+  /* ---- Hero photo banner (full-bleed) ---- */
+  .hero-photo {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    /* The fallback color shows if hero.jpg is missing.
+       Replace hero.jpg with your own photo (recommended: ~1600x900px, <300KB). */
+    background:
+      var(--green-deep)
+      url('hero.jpg')
+      center/cover no-repeat;
+  }
+  .hero-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(31,47,42,0)   45%,
+      rgba(31,47,42,.55) 80%,
+      rgba(31,47,42,1)   100%);
+  }
+  .hero-photo .overlay {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0 22px 18px;
+    text-align: center;
+    color: var(--ivory);
+    z-index: 1;
+  }
+  .hero-photo .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .hero-photo h1 {
+    font-size: 26px;
+    margin: 6px 0 4px;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    color: var(--ivory);
+    text-shadow: 0 2px 18px rgba(0,0,0,.35);
+  }
+  .hero-photo .tagline {
+    margin: 4px auto 0;
+    font-size: 14px;
+    color: var(--muted-dark);
+    max-width: 460px;
+  }
+  @media (min-width: 480px) {
+    .hero-photo { height: 360px; }
+    .hero-photo h1 { font-size: 32px; }
+  }
+
+  /* ---- Primary CTA row (under the hero) ---- */
+  .cta-row {
+    text-align: center;
+    margin: 22px 0 6px;
+  }
+
+  /* ---- Primary "Book Direct" button ---- */
+  .book {
+    display: inline-block;
+    padding: 14px 24px;
+    background: var(--clay);
+    color: var(--accent-ink);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: .01em;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .book:hover, .book:focus {
+    text-decoration: none;
+    background: var(--gold);
+    color: var(--ivory);
+  }
+
+  /* ---- Category cards (acting as tabs) ---- */
+  nav.cats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 28px 0 18px;
+  }
+  nav.cats a[role="tab"] {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: var(--shadow);
+    min-height: 56px;
+    cursor: pointer;
+    transition: border-color .12s ease, background .12s ease, box-shadow .12s ease, transform .12s ease;
+    outline: none;
+  }
+  nav.cats a[role="tab"]:hover { border-color: var(--clay); }
+  nav.cats a[role="tab"]:focus-visible {
+    border-color: var(--ivory);
+    box-shadow: 0 0 0 3px rgba(245,242,235,.55), var(--shadow);
+  }
+  /* Active (selected) card — Deep Forest Green fill, 2 px Ivory border */
+  nav.cats a[role="tab"][aria-selected="true"] {
+    background: var(--green-deep);
+    border-color: var(--ivory);
+    color: var(--ivory);
+    /* 1 px border + 1 px outer ring = visually 2 px ivory edge, no layout shift on toggle */
+    box-shadow: 0 0 0 1px var(--ivory), var(--shadow-lg);
+    transform: translateY(-1px);
+  }
+  nav.cats .icon { font-size: 22px; line-height: 1; }
+  @media (min-width: 480px) {
+    nav.cats { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ---- Tab panel area ---- */
+  .panels { position: relative; }
+  section.panel {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    color: var(--ink);
+    overflow: hidden;
+  }
+  section.panel[hidden] { display: none; }
+  section.panel > .panel-head {
+    padding: 14px 18px 10px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.panel > .panel-head h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.panel > .panel-head .icon { font-size: 20px; line-height: 1; }
+  section.panel > .body {
+    padding: 14px 18px 18px;
+    color: var(--ink);
+  }
+  section.panel > .body p.lead {
+    color: var(--muted);
+    margin: 0 0 12px;
+    font-size: 14px;
+  }
+
+  /* ---- Item lists ---- */
+  ul.items { list-style: none; padding: 0; margin: 0; }
+  ul.items > li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  ul.items > li:last-child { border-bottom: 0; }
+  ul.items .name { font-weight: 700; color: var(--ink); }
+  ul.items .meta {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  ul.items .desc {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  ul.items .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+    font-size: 13px;
+  }
+  ul.items .links a { color: #8a6a3f; }   /* darker clay for AA contrast on ivory */
+  ul.items .placeholder {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  /* ---- Disclaimer ---- */
+  .disclaimer {
+    margin-top: 20px;
+    padding: 12px 14px;
+    background: var(--sand);
+    border: 1px solid #C7BDB0;
+    border-radius: var(--radius);
+    color: var(--black);
+    font-size: 13px;
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    margin-top: 36px;
+    text-align: center;
+    color: var(--muted-dark);
+    font-size: 12px;
+  }
+  footer .top {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 14px;
+    border: 1px solid rgba(245,242,235,.25);
+    border-radius: 999px;
+    color: var(--ivory);
+    background: rgba(245,242,235,.06);
+  }
+  footer .top:hover { background: rgba(245,242,235,.12); text-decoration: none; }
+</style>
+</head>
+<body id="top">
+
+  <!-- ============================================================
+       HERO PHOTO BANNER
+       To swap the photo: drop a file named hero.jpg in the same
+       folder as this index.html. Recommended ~1600x900 px, <300KB.
+       The Deep Forest Green color shows through if no file is found.
+       ============================================================ -->
+  <section class="hero-photo" aria-label="Welcome">
+    <div class="overlay">
+      <div class="eyebrow">Welcome</div>
+      <h1>Seneca Lake Wine Trail Farmhouse</h1>
+      <p class="tagline">A small guest guide to the area — wineries, trails, food, and day trips.</p>
+    </div>
+  </section>
+
+<div class="wrap">
+
+  <!-- ============ BOOKING LINK (edit URL if it ever changes) ============ -->
+  <div class="cta-row">
+    <a class="book" href="https://www.fingerlakesvacationcottages.com/rentals/seneca-lake-wine-trail-farmhouse-lake-views"
+       target="_blank" rel="noopener">
+       Book Direct for Your Next Stay →
+    </a>
+  </div>
+
+  <!-- ============================================================
+       CATEGORY CARDS (TAB INTERFACE)
+       Tapping a card swaps the panel content below.
+       Default active: Trails. Deep links work via #trails, #wineries, etc.
+       ============================================================ -->
+  <nav class="cats" role="tablist" aria-label="Categories">
+    <a role="tab" id="tab-wineries"    data-tab="wineries"    href="#wineries"    aria-controls="panel-wineries"    aria-selected="false" tabindex="-1"><span class="icon">🍷</span>Wineries</a>
+    <a role="tab" id="tab-trails"      data-tab="trails"      href="#trails"      aria-controls="panel-trails"      aria-selected="true"  tabindex="0"><span class="icon">🥾</span>Trails</a>
+    <a role="tab" id="tab-waterfalls"  data-tab="waterfalls"  href="#waterfalls"  aria-controls="panel-waterfalls"  aria-selected="false" tabindex="-1"><span class="icon">💧</span>Waterfalls</a>
+    <a role="tab" id="tab-restaurants" data-tab="restaurants" href="#restaurants" aria-controls="panel-restaurants" aria-selected="false" tabindex="-1"><span class="icon">🍽️</span>Restaurants</a>
+    <a role="tab" id="tab-activities"  data-tab="activities"  href="#activities"  aria-controls="panel-activities"  aria-selected="false" tabindex="-1"><span class="icon">⛵</span>Activities</a>
+    <a role="tab" id="tab-icecream"    data-tab="icecream"    href="#icecream"    aria-controls="panel-icecream"    aria-selected="false" tabindex="-1"><span class="icon">🍦</span>Ice Cream</a>
+    <a role="tab" id="tab-daytrips"    data-tab="daytrips"    href="#daytrips"    aria-controls="panel-daytrips"    aria-selected="false" tabindex="-1"><span class="icon">🚗</span>Day Trips</a>
+  </nav>
+
+  <!-- ============================================================
+       EDITABLE CONTENT BELOW
+       Each <section class="panel"> is one tab panel. Only the
+       active panel is shown; others have the [hidden] attribute.
+       To add an item, copy a <li>...</li> block and edit the fields.
+       ============================================================ -->
+  <div class="panels">
+
+
+  <!-- ============ WINERIES (placeholder — fill in your favorites) ============ -->
+  <section class="panel" role="tabpanel" id="panel-wineries" data-panel="wineries" aria-labelledby="tab-wineries" hidden>
+    <header class="panel-head"><h2><span class="icon">🍷</span>Wineries</h2></header>
+    <div class="body">
+      <p class="lead">Our picks from the Seneca Lake Wine Trail. Most are within a 15–25 minute drive.</p>
+      <ul class="items">
+        <li>
+          <span class="placeholder">Add your recommendations here. Each entry can include a short note (“great rieslings, pet-friendly patio”) and a link to the winery's site.</span>
+        </li>
+        <!-- EXAMPLE ITEM — copy this pattern when adding real entries:
+        <li>
+          <span class="name">Winery Name</span>
+          <span class="meta">~12 min · open Thu–Sun</span>
+          <span class="desc">One-line note about why you like it.</span>
+          <span class="links">
+            <a href="https://winery.example/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Winery+Name+Rock+Stream+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+        -->
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============ TRAILS (researched — DEFAULT ACTIVE PANEL) ============ -->
+  <section class="panel" role="tabpanel" id="panel-trails" data-panel="trails" aria-labelledby="tab-trails">
+    <header class="panel-head"><h2><span class="icon">🥾</span>Trails</h2></header>
+    <div class="body">
+      <p class="lead">A short list of hikes nearby, ranging from easy gorge walks to longer loops in the national forest.</p>
+      <ul class="items">
+
+        <li>
+          <span class="name">Watkins Glen State Park — Gorge Trail</span>
+          <span class="meta">~10 min south · ~2 mi · moderate (many stairs)</span>
+          <span class="desc">Iconic stone path past 19 waterfalls and 200-ft cliffs. The gorge trail is closed in winter; rim trails stay open.</span>
+          <span class="links">
+            <a href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+State+Park" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Havana Glen Park — Eagle Cliff Falls</span>
+          <span class="meta">~15 min south (Montour Falls) · short walk · easy</span>
+          <span class="desc">A small county park with a quick walk in to a 41-ft waterfall — good if you want a waterfall without the Watkins Glen crowds.</span>
+          <span class="links">
+            <a href="https://www.townofmontour.gov/havanaglen" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Havana+Glen+Park+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Finger Lakes National Forest — Interloken / Burnt Hill</span>
+          <span class="meta">~25–30 min east (Hector) · 3–12 mi options · easy to moderate</span>
+          <span class="desc">The only national forest in NY. Mix of woods, meadows, and pasture; the Interloken Trail runs ~12 mi north–south, with shorter loops like Burnt Hill (~3.8 mi).</span>
+          <span class="links">
+            <a href="https://www.fs.usda.gov/recarea/gmfl/recarea/?recid=80781" target="_blank" rel="noopener">USDA Forest Service →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Hector+Ranger+Station+Hector+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Catharine Valley Trail</span>
+          <span class="meta">multiple access points · flat · easy</span>
+          <span class="desc">Year-round rail trail through Schuyler County for walking, biking, snowshoeing. Free.</span>
+          <span class="links">
+            <a href="https://parks.ny.gov/visit/state-parks/catharine-valley-trail" target="_blank" rel="noopener">Trail info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Catharine+Valley+Trail+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Queen Catharine Marsh Loop</span>
+          <span class="meta">~10 min south of Watkins Glen · ~7 mi · level</span>
+          <span class="desc">Quiet wildlife-management-area trail through marsh and woods — good for birding.</span>
+          <span class="links">
+            <a href="https://dec.ny.gov/places/catharine-creek-wildlife-management-area" target="_blank" rel="noopener">DEC info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Queen+Catharine+Marsh+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Seneca Lake State Park — Lakefront Trail</span>
+          <span class="meta">~45 min north (Geneva) · ~4.3 mi · easy/paved</span>
+          <span class="desc">Flat lakefront walk. Pair with a stroll through downtown Geneva.</span>
+          <span class="links">
+            <a href="https://parks.ny.gov/visit/state-parks/seneca-lake-state-park" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Lake+State+Park+Geneva+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+      </ul>
+      <p class="lead" style="margin-top:14px;">Drive times are approximate from Rock Stream — tap "Directions" for live travel time.</p>
+    </div>
+  </section>
+
+
+  <!-- ============ WATERFALLS (placeholder) ============ -->
+  <section class="panel" role="tabpanel" id="panel-waterfalls" data-panel="waterfalls" aria-labelledby="tab-waterfalls" hidden>
+    <header class="panel-head"><h2><span class="icon">💧</span>Waterfalls</h2></header>
+    <div class="body">
+      <p class="lead">Many of the best waterfalls overlap with the Trails section. Add any standalone favorites here.</p>
+      <ul class="items">
+        <li>
+          <span class="placeholder">e.g. Hector Falls (roadside view on Rt 414), Shequaga Falls (Montour Falls village), Taughannock Falls (Ithaca). Confirm before listing.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============ RESTAURANTS (placeholder) ============ -->
+  <section class="panel" role="tabpanel" id="panel-restaurants" data-panel="restaurants" aria-labelledby="tab-restaurants" hidden>
+    <header class="panel-head"><h2><span class="icon">🍽️</span>Restaurants</h2></header>
+    <div class="body">
+      <p class="lead">Where we send guests when they ask. Mix of casual and special-occasion.</p>
+      <ul class="items">
+        <li>
+          <span class="placeholder">Add your favorites here — note the cuisine, neighborhood, and whether reservations are recommended.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============ ACTIVITIES (placeholder) ============ -->
+  <section class="panel" role="tabpanel" id="panel-activities" data-panel="activities" aria-labelledby="tab-activities" hidden>
+    <header class="panel-head"><h2><span class="icon">⛵</span>Activities</h2></header>
+    <div class="body">
+      <p class="lead">Lake rentals, tours, racetrack, distilleries, antique shops — anything that isn't a winery, trail, or restaurant.</p>
+      <ul class="items">
+        <li>
+          <span class="placeholder">e.g. boat rentals, Watkins Glen International, Captain Bill's lake cruise, Corning Museum of Glass workshops.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============ ICE CREAM (placeholder) ============ -->
+  <section class="panel" role="tabpanel" id="panel-icecream" data-panel="icecream" aria-labelledby="tab-icecream" hidden>
+    <header class="panel-head"><h2><span class="icon">🍦</span>Ice Cream</h2></header>
+    <div class="body">
+      <p class="lead">Because every good day ends here.</p>
+      <ul class="items">
+        <li>
+          <span class="placeholder">Add your favorite local creameries and stands.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============ DAY TRIPS (researched) ============ -->
+  <section class="panel" role="tabpanel" id="panel-daytrips" data-panel="daytrips" aria-labelledby="tab-daytrips" hidden>
+    <header class="panel-head"><h2><span class="icon">🚗</span>Day Trips — Nearby Towns</h2></header>
+    <div class="body">
+      <p class="lead">Pick a town for the day. All within roughly an hour. Tap "Directions" for live travel time.</p>
+      <ul class="items">
+
+        <li>
+          <span class="name">Watkins Glen</span>
+          <span class="meta">~10 min south</span>
+          <span class="desc">The state park gorge, a walkable harbor, Watkins Glen International racetrack in season, and the southern anchor of the Seneca Lake Wine Trail.</span>
+          <span class="links">
+            <a href="https://www.explorewatkinsglen.com/" target="_blank" rel="noopener">Visitor info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Hammondsport</span>
+          <span class="meta">~35–40 min west · Keuka Lake</span>
+          <span class="desc">Small lakeside village square. Glenn H. Curtiss Museum (early aviation & motorcycles) and Pleasant Valley Wine Co (1860, U.S. Bonded Winery No. 1) anchor a half-day visit.</span>
+          <span class="links">
+            <a href="https://hammondsport.org/" target="_blank" rel="noopener">Visitor info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Hammondsport+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Corning</span>
+          <span class="meta">~40 min south</span>
+          <span class="desc">The Corning Museum of Glass is the headline draw (glassmaking demos, hot-glass workshops, 50,000+ objects). The Gaffer District has a walkable downtown; the Rockwell Museum covers American art.</span>
+          <span class="links">
+            <a href="https://www.gaffer.org/" target="_blank" rel="noopener">Gaffer District →</a>
+            <a href="https://home.cmog.org/" target="_blank" rel="noopener">Museum of Glass →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Corning+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Ithaca</span>
+          <span class="meta">~50–60 min east · Cayuga Lake</span>
+          <span class="desc">Cornell University, the Ithaca Commons (pedestrian downtown), and three big gorges nearby — Taughannock, Buttermilk, and Robert H. Treman state parks.</span>
+          <span class="links">
+            <a href="https://www.visitithaca.com/" target="_blank" rel="noopener">Visitor info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Ithaca+Commons+Ithaca+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Geneva</span>
+          <span class="meta">~45 min north · north end of Seneca Lake</span>
+          <span class="desc">Walkable historic downtown on the lakefront, 19th-century architecture, lakefront state park, and the start of the Seneca Lake Wine Trail's east side.</span>
+          <span class="links">
+            <a href="https://www.visitfingerlakes.com/things-to-do/cities/geneva/" target="_blank" rel="noopener">Visitor info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Geneva+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Penn Yan</span>
+          <span class="meta">~40 min west · Keuka Lake</span>
+          <span class="desc">Compact downtown with shops, lakefront access, and a different (Y-shaped) Finger Lake to explore. Easy half-day.</span>
+          <span class="links">
+            <a href="https://www.yatesny.com/" target="_blank" rel="noopener">Visitor info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Penn+Yan+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+
+  </div><!-- /.panels -->
+
+  <div class="disclaimer">
+    Hours, prices, and seasonal closures change. Tap a venue's official link to confirm before you go.
+  </div>
+
+  <footer>
+    <a href="#top" class="top">↑ Back to top</a>
+    <div style="margin-top:10px;">Made for our guests. Have a great stay.</div>
+  </footer>
+
+</div>
+
+<script>
+/* Tab switching for the category cards.
+   - Default panel: trails
+   - Deep links work via URL hash (e.g. /index.html#wineries)
+   - Keyboard: arrow keys to move focus, Home/End to jump */
+(function () {
+  var DEFAULT = 'trails';
+  var tablist = document.querySelector('nav.cats[role="tablist"]');
+  if (!tablist) return;
+  var tabs   = Array.prototype.slice.call(tablist.querySelectorAll('a[role="tab"]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('section.panel[role="tabpanel"]'));
+
+  function tabFor(id)    { return tabs.find(function (t) { return t.getAttribute('data-tab') === id; }); }
+  function isValidId(id) { return !!tabFor(id); }
+
+  function activate(id, opts) {
+    opts = opts || {};
+    if (!isValidId(id)) id = DEFAULT;
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-tab') === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.setAttribute('tabindex', on ? '0' : '-1');
+    });
+    panels.forEach(function (p) {
+      var on = p.getAttribute('data-panel') === id;
+      if (on) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
+    });
+    try {
+      if (location.hash !== '#' + id) {
+        history.replaceState(null, '', '#' + id);
+      }
+    } catch (e) { /* old browsers */ }
+    if (opts.focus) {
+      var el = tabFor(id);
+      if (el) el.focus();
+    }
+  }
+
+  var initial = (location.hash || '').replace(/^#/, '');
+  activate(initial || DEFAULT, { focus: false });
+
+  tablist.addEventListener('click', function (e) {
+    var t = e.target.closest('a[role="tab"]');
+    if (!t) return;
+    e.preventDefault();
+    activate(t.getAttribute('data-tab'), { focus: false });
+  });
+
+  tablist.addEventListener('keydown', function (e) {
+    var current = tabs.indexOf(document.activeElement);
+    if (current < 0) return;
+    var next = current;
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown': next = (current + 1) % tabs.length; break;
+      case 'ArrowLeft':
+      case 'ArrowUp':   next = (current - 1 + tabs.length) % tabs.length; break;
+      case 'Home':      next = 0; break;
+      case 'End':       next = tabs.length - 1; break;
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        activate(tabs[current].getAttribute('data-tab'), { focus: false });
+        return;
+      default: return;
+    }
+    e.preventDefault();
+    activate(tabs[next].getAttribute('data-tab'), { focus: true });
+  });
+
+  window.addEventListener('hashchange', function () {
+    var id = (location.hash || '').replace(/^#/, '');
+    activate(id || DEFAULT, { focus: false });
+  });
+})();
+</script>
+
+</body>
+</html>
