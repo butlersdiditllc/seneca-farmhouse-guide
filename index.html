@@ -1173,40 +1173,60 @@
   var tablists = document.querySelectorAll('nav.cats[role="tablist"]');
   if (!tablists) return;
 
-  // Initialize all tab lists
-  Array.prototype.forEach.call(tablists, function(tablist) {
-    var tabs   = Array.prototype.slice.call(tablist.querySelectorAll('a[role="tab"]'));
-    var panels = Array.prototype.slice.call(document.querySelectorAll('section.panel[role="tabpanel"]'));
+  // Get all tabs and panels across all tablists
+  var allTabs = document.querySelectorAll('nav.cats[role="tablist"] a[role="tab"]');
+  var allPanels = document.querySelectorAll('section.panel[role="tabpanel"]');
 
-    function tabFor(id)    { return tabs.find(function (t) { return t.getAttribute('data-tab') === id; }); }
-    function isValidId(id) { return !!tabFor(id); }
+  function deactivateAllTabs() {
+    Array.prototype.forEach.call(allTabs, function (t) {
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
+  }
 
-    function activate(id, opts) {
-      opts = opts || {};
-      if (!isValidId(id)) id = DEFAULT;
-      tabs.forEach(function (t) {
-        var on = t.getAttribute('data-tab') === id;
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.setAttribute('tabindex', on ? '0' : '-1');
-      });
-      panels.forEach(function (p) {
-        var on = p.getAttribute('data-panel') === id;
-        if (on) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
-      });
-      try {
-        if (location.hash !== '#' + id) {
-          history.replaceState(null, '', '#' + id);
-        }
-      } catch (e) { }
-      if (opts.focus) {
-        var el = tabFor(id);
-        if (el) el.focus();
-      }
+  function hideAllPanels() {
+    Array.prototype.forEach.call(allPanels, function (p) {
+      p.setAttribute('hidden', '');
+    });
+  }
+
+  function activate(id, opts) {
+    opts = opts || {};
+    deactivateAllTabs();
+    hideAllPanels();
+
+    // Activate the tab with matching data-tab
+    var activeTab = Array.prototype.find.call(allTabs, function (t) {
+      return t.getAttribute('data-tab') === id;
+    });
+    if (activeTab) {
+      activeTab.setAttribute('aria-selected', 'true');
+      activeTab.setAttribute('tabindex', '0');
     }
 
-    var initial = (location.hash || '').replace(/^#/, '');
-    activate(initial || DEFAULT, { focus: false });
+    // Show the panel with matching data-panel
+    var activePanel = Array.prototype.find.call(allPanels, function (p) {
+      return p.getAttribute('data-panel') === id;
+    });
+    if (activePanel) {
+      activePanel.removeAttribute('hidden');
+    }
 
+    try {
+      if (location.hash !== '#' + id) {
+        history.replaceState(null, '', '#' + id);
+      }
+    } catch (e) { }
+    if (opts.focus && activeTab) {
+      activeTab.focus();
+    }
+  }
+
+  var initial = (location.hash || '').replace(/^#/, '');
+  activate(initial || DEFAULT, { focus: false });
+
+  // Handle clicks on all tabs
+  Array.prototype.forEach.call(tablists, function(tablist) {
     tablist.addEventListener('click', function (e) {
       var t = e.target.closest('a[role="tab"]');
       if (!t) return;
@@ -1215,6 +1235,7 @@
     });
 
     tablist.addEventListener('keydown', function (e) {
+      var tabs = Array.prototype.slice.call(tablist.querySelectorAll('a[role="tab"]'));
       var current = tabs.indexOf(document.activeElement);
       if (current < 0) return;
       var next = current;
