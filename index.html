@@ -71,8 +71,6 @@
     position: relative;
     width: 100%;
     height: 280px;
-    /* The fallback color shows if hero.jpg is missing.
-       Replace hero.jpg with your own photo (recommended: ~1600x900px, <300KB). */
     background:
       var(--green-deep)
       url('hero.jpg')
@@ -145,12 +143,25 @@
     color: var(--ivory);
   }
 
+  /* ---- Tab row separator ---- */
+  .tab-separator {
+    height: 1px;
+    background: rgba(245,242,235,.15);
+    margin: 10px 0 18px;
+  }
+
   /* ---- Category cards (acting as tabs) ---- */
   nav.cats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin: 28px 0 18px;
+  }
+  nav.cats[data-group="primary"] {
+    margin: 0 0 4px;
+  }
+  nav.cats[data-group="secondary"] {
+    margin: 14px 0 18px;
   }
   nav.cats a[role="tab"] {
     display: flex;
@@ -174,12 +185,10 @@
     border-color: var(--ivory);
     box-shadow: 0 0 0 3px rgba(245,242,235,.55), var(--shadow);
   }
-  /* Active (selected) card — Deep Forest Green fill, 2 px Ivory border */
   nav.cats a[role="tab"][aria-selected="true"] {
     background: var(--green-deep);
     border-color: var(--ivory);
     color: var(--ivory);
-    /* 1 px border + 1 px outer ring = visually 2 px ivory edge, no layout shift on toggle */
     box-shadow: 0 0 0 1px var(--ivory), var(--shadow-lg);
     transform: translateY(-1px);
   }
@@ -225,6 +234,21 @@
     margin: 0 0 12px;
     font-size: 14px;
   }
+  section.panel > .body p {
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0 0 12px;
+  }
+  section.panel > .body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ---- Center the cards for The Story and Things to Know ---- */
+  section.panel[data-panel="story"],
+  section.panel[data-panel="things"] {
+    max-width: 600px;
+    margin: 0 auto 18px;
+  }
 
   /* ---- Item lists ---- */
   ul.items { list-style: none; padding: 0; margin: 0; }
@@ -253,11 +277,26 @@
     margin-top: 6px;
     font-size: 13px;
   }
-  ul.items .links a { color: #8a6a3f; }   /* darker clay for AA contrast on ivory */
+  ul.items .links a { color: #8a6a3f; }
   ul.items .placeholder {
     color: var(--muted);
     font-style: italic;
     font-size: 14px;
+  }
+
+  /* ---- Section headers within lists ---- */
+  .subsection-header {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    margin: 16px 0 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+  }
+  .subsection-header:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   /* ---- Disclaimer ---- */
@@ -292,12 +331,6 @@
 </head>
 <body id="top">
 
-  <!-- ============================================================
-       HERO PHOTO BANNER
-       To swap the photo: drop a file named hero.jpg in the same
-       folder as this index.html. Recommended ~1600x900 px, <300KB.
-       The Deep Forest Green color shows through if no file is found.
-       ============================================================ -->
   <section class="hero-photo" aria-label="Welcome">
     <div class="overlay">
       <div class="eyebrow">Welcome</div>
@@ -308,7 +341,6 @@
 
 <div class="wrap">
 
-  <!-- ============ BOOKING LINK (edit URL if it ever changes) ============ -->
   <div class="cta-row">
     <a class="book" href="https://www.fingerlakesvacationcottages.com/rentals/seneca-lake-wine-trail-farmhouse-lake-views"
        target="_blank" rel="noopener">
@@ -316,14 +348,18 @@
     </a>
   </div>
 
-  <!-- ============================================================
-       CATEGORY CARDS (TAB INTERFACE)
-       Tapping a card swaps the panel content below.
-       Default active: Trails. Deep links work via #trails, #wineries, etc.
-       ============================================================ -->
-  <nav class="cats" role="tablist" aria-label="Categories">
+  <!-- INFORMATION TABS (at the top, separated visually) -->
+  <nav class="cats" role="tablist" aria-label="About the House" data-group="primary">
+    <a role="tab" id="tab-story"      data-tab="story"      href="#story"      aria-controls="panel-story"      aria-selected="true"  tabindex="0"><span class="icon">🏠</span>The Story</a>
+    <a role="tab" id="tab-things"     data-tab="things"     href="#things"     aria-controls="panel-things"     aria-selected="false" tabindex="-1"><span class="icon">ℹ️</span>Things to Know</a>
+  </nav>
+
+  <div class="tab-separator"></div>
+
+  <!-- CATEGORY TABS (main navigation) -->
+  <nav class="cats" role="tablist" aria-label="Categories" data-group="secondary">
     <a role="tab" id="tab-wineries"    data-tab="wineries"    href="#wineries"    aria-controls="panel-wineries"    aria-selected="false" tabindex="-1"><span class="icon">🍷</span>Wineries</a>
-    <a role="tab" id="tab-trails"      data-tab="trails"      href="#trails"      aria-controls="panel-trails"      aria-selected="true"  tabindex="0"><span class="icon">🥾</span>Trails</a>
+    <a role="tab" id="tab-trails"      data-tab="trails"      href="#trails"      aria-controls="panel-trails"      aria-selected="false" tabindex="-1"><span class="icon">🥾</span>Trails</a>
     <a role="tab" id="tab-waterfalls"  data-tab="waterfalls"  href="#waterfalls"  aria-controls="panel-waterfalls"  aria-selected="false" tabindex="-1"><span class="icon">💧</span>Waterfalls</a>
     <a role="tab" id="tab-restaurants" data-tab="restaurants" href="#restaurants" aria-controls="panel-restaurants" aria-selected="false" tabindex="-1"><span class="icon">🍽️</span>Restaurants</a>
     <a role="tab" id="tab-activities"  data-tab="activities"  href="#activities"  aria-controls="panel-activities"  aria-selected="false" tabindex="-1"><span class="icon">⛵</span>Activities</a>
@@ -331,42 +367,173 @@
     <a role="tab" id="tab-daytrips"    data-tab="daytrips"    href="#daytrips"    aria-controls="panel-daytrips"    aria-selected="false" tabindex="-1"><span class="icon">🚗</span>Day Trips</a>
   </nav>
 
-  <!-- ============================================================
-       EDITABLE CONTENT BELOW
-       Each <section class="panel"> is one tab panel. Only the
-       active panel is shown; others have the [hidden] attribute.
-       To add an item, copy a <li>...</li> block and edit the fields.
-       ============================================================ -->
   <div class="panels">
 
+  <!-- ============ THE STORY ============ -->
+  <section class="panel" role="tabpanel" id="panel-story" data-panel="story" aria-labelledby="tab-story">
+    <header class="panel-head"><h2><span class="icon">🏠</span>The Story</h2></header>
+    <div class="body">
+      <p>We spent two and a half years looking for a vacation home in the mountains near a lake—somewhere for us to rest, and somewhere to build memories with family and friends. Growing up, my extended cousins had places on the Chesapeake Bay and Shore, and I wanted the same thing for my own family.</p>
 
-  <!-- ============ WINERIES (placeholder — fill in your favorites) ============ -->
+      <p>One winter between Christmas and New Year, we rented a home on the west side of Seneca Lake near Dundee. Even in the cold, the place was stunning. Hidden gems everywhere—small towns, good restaurants, shops, trails, waterfalls, views. We fell in love immediately.</p>
+
+      <p>Our search had been slowing down. We weren't finding what we wanted. But when we came back to look at a property with our realtor, I spotted this house three miles away. We asked if we could see it. She got us in that same morning.</p>
+
+      <p>The house wasn't in great shape. The land was overgrown. But we saw what it could be. Our families were worried we'd taken on too much. The closing was hard—delayed from July to October 2023—but we finally closed in October.</p>
+
+      <p>Before we owned it, this was a bed and breakfast in the nineties and early two thousands. The Reading House. That history matters to us.</p>
+
+      <p>It's a large federal-style home with five bedrooms, five baths, original trim and details worth preserving. Our renovation has been about honoring those bones while bringing it back to life—sanding, painting, staining, replacing what needed it, making things work in a house that doesn't sit perfectly square.</p>
+
+      <p>The stairwell is our statement piece. The railings are so ornate. We gave it the attention it deserves.</p>
+
+      <p>We can't be here full time because of our careers. But we can share it. We want you to make your own memories here, with the people you love, and discover everything the Finger Lakes has to offer.</p>
+    </div>
+  </section>
+
+  <!-- ============ THINGS TO KNOW ============ -->
+  <section class="panel" role="tabpanel" id="panel-things" data-panel="things" aria-labelledby="tab-things" hidden>
+    <header class="panel-head"><h2><span class="icon">ℹ️</span>Things to Know About the House</h2></header>
+    <div class="body">
+      <p class="lead"><strong>Check-in & House Rules</strong><br>Check-in and check-out times are listed on the platform you booked through (Airbnb, VRBO, or fingerlakescottages.com).</p>
+
+      <p><strong>Quiet Hours:</strong> 10pm to 7am. We ask that you keep gatherings to a reasonable size—this is a home in a residential area. No smoking indoors.</p>
+
+      <p><strong>Dogs:</strong> Dogs are welcome if identified when you book. We have a fenced yard, one dog bed, and dog bowls for food and water. Couch covers are available in the wicker basket in the main living room if you'd like to use them. Please pick up after your dog—there's a small trash can in the fenced yard for waste. Dog waste bags and trash bags for the dog waste can are located near the washer in the laundry room. Put the waste in the large outdoor trash can before you leave.</p>
+
+      <p><strong>Water & Well System</strong><br>The house runs on well water and septic. Our water is treated and potable straight from the tap. You may notice some air in the water system, especially when hot water is turned on—this is normal and harmless.</p>
+
+      <p>Filtered water for drinking and coffee is available at the bar sink in the kitchen (reverse osmosis).</p>
+
+      <p><strong>Hot water:</strong> We have one water heater. If multiple people shower at the same time, hot water may run out. The system reheats in about 20-30 minutes. We ask for patience—it's part of the charm of an older home.</p>
+
+      <p><strong>Climate Control</strong><br>Each bedroom has its own window AC unit and ceiling fan. The green front living rooms share one AC unit, and the dining room in the back has its own. Turn off AC units when you're done with your stay.</p>
+
+      <p>If renting in winter, we have a propane furnace with space heaters available. Propane is expensive, so we heat efficiently.</p>
+
+      <p><strong>Kitchen & Coffee</strong><br>A full 12-cup coffee pot and single-cup Keurig are provided. Coffee k-cups are in the cabinet under the coffee sink. Filtered water for coffee is at the bar sink.</p>
+
+      <p>Other appliances available: electric tea kettle, 4-slice toaster, crock pot, blender, electric griddle, microwave, dishwasher, food processor, mixing bowls, various pots and pans (including cast iron), baking sheets, cutting boards, and more.</p>
+
+      <p>A gas grill is provided with two propane tanks. If the first tank runs low, you can exchange it in Watkins Glen (Walmart, Watkins Supply, 7-11) or Dundee (Dandy Mart, Dollar General).</p>
+
+      <p><strong>Linens & Laundry</strong><br>The hallway bathroom on the second floor has a linen closet stocked with extra bath towels, hand towels, and sheets if you need them. Hair dryers are in the primary bedroom and hallway bathroom. Washer and dryer are available for your use.</p>
+
+      <p><strong>Windows & Doors</strong><br>Most windows are original sash windows from the 1820s. The pulleys have been cut, so windows require props to stay open—these are provided in each frame. On nice days, we recommend opening the front entrance, side entrance, and back doors to let fresh air through. Storm windows are also available.</p>
+
+      <p><strong>Outdoor Space & Fire Pit</strong><br>The property has a fire pit. We do not provide firewood. Firewood is available for purchase on the side road up and down NY-14. Our one direct neighbor also has it readily available. Walmart, gas stations, Watkins Supply, and the U-Haul down the street may also have it to purchase. For any side road pick ups, make sure to have cash.</p>
+
+      <p><strong>Fire pit rules:</strong> Use dry, appropriate firewood. Keep the fire attended at all times—never leave it unattended. Fully extinguish before bed or before you leave. Keep the fire at a safe distance from structures and trees. No glass bottles around the fire pit.</p>
+
+      <p>Yard space is available across the property except beyond the pond area, which is our neighbors' land. The property is bordered by the north side with Rock Stream (covered with trees) and the south side with a small stream that feeds into our two ponds. Please be kind and respectful of our neighbors on the south side. On rainy days, areas outside the fenced section may be muddy.</p>
+
+      <p><strong>Parking</strong><br>Two gravel driveways can accommodate up to 6 cars. Park on either one.</p>
+
+      <p><strong>Trash & Recycling</strong><br>Trash and recycling are picked up on Thursday. Please put them out before you leave. Trash cans are located behind the garage, next to the deck. All garbage must be bagged. Recyclables must be bagged and placed in a separate trash can from garbage. Do not place items on top of or in garbage cans—anything on the can will be assumed to be trash.</p>
+
+      <p><strong>Entertainment</strong><br>A Smart TV is in the living room. The primary bedroom has a Samsung TV with a Roku streaming stick—use the Roku for streaming services, not the Samsung's built-in apps. Sign in with your own streaming accounts. Roku Live TV is free and offers good viewing options.</p>
+
+      <p>Board games, jigsaw puzzles, and cards are available in the front green living rooms. The middle living room has a soft-tip dart board.</p>
+
+      <p><strong>WiFi:</strong> The network name and password are available on your booking site. You'll also find a QR code in the home that you can scan to connect automatically. We've remotely worked from the home for multiple days and weeks at a time—the connection is reliable for working.</p>
+
+      <p><strong>A Word About the House</strong><br>This home was built in 1820. The floors aren't all level—please have caution on stairs and uneven areas. It's an old house with character, original wood siding, and all the quirks that come with age. Bugs are common in a farm area (ladybugs, boxelder beetles, stink bugs). We take preventative measures, but you may see insects typical to the region. It's part of living near nature.</p>
+
+      <p>We hope you love it as much as we do.</p>
+    </div>
+  </section>
+
+  <!-- ============ WINERIES ============ -->
   <section class="panel" role="tabpanel" id="panel-wineries" data-panel="wineries" aria-labelledby="tab-wineries" hidden>
     <header class="panel-head"><h2><span class="icon">🍷</span>Wineries</h2></header>
     <div class="body">
-      <p class="lead">Our picks from the Seneca Lake Wine Trail. Most are within a 15–25 minute drive.</p>
+      <p class="lead">Seneca Lake has serious wine. Most of these are within 5 miles of the house—you can visit several in an afternoon. Some have food, some have views, all of them have owners and winemakers who know what they're doing.</p>
       <ul class="items">
         <li>
-          <span class="placeholder">Add your recommendations here. Each entry can include a short note (“great rieslings, pet-friendly patio”) and a link to the winery's site.</span>
-        </li>
-        <!-- EXAMPLE ITEM — copy this pattern when adding real entries:
-        <li>
-          <span class="name">Winery Name</span>
-          <span class="meta">~12 min · open Thu–Sun</span>
-          <span class="desc">One-line note about why you like it.</span>
+          <span class="name">Toast Winery</span>
+          <span class="meta">~0.2 miles · literally down the road</span>
+          <span class="desc">Seasonal pairings (wine and pickles is a thing, and it's great). The owners are usually there and worth talking to.</span>
           <span class="links">
-            <a href="https://winery.example/" target="_blank" rel="noopener">Website →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Winery+Name+Rock+Stream+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://www.instagram.com/toastwineryflx/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.facebook.com/p/Toast-Winery-100063974925155/" target="_blank" rel="noopener">Facebook →</a>
           </span>
         </li>
-        -->
+
+        <li>
+          <span class="name">Barnstormer Winery</span>
+          <span class="meta">~0.6 miles · super close</span>
+          <span class="desc">Good wines, nice outdoor space.</span>
+          <span class="links">
+            <a href="https://www.instagram.com/barnstormerwinery/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.facebook.com/BarnstormerWinery/" target="_blank" rel="noopener">Facebook →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Miles Wine Cellars</span>
+          <span class="meta">~1.9 miles · accessible by boat</span>
+          <span class="desc">Walk down a steep driveway and you're standing on a dock in the middle of Seneca Lake. The only winery you can reach by boat. Wine, cocktails, beers, frozen drinks.</span>
+          <span class="links">
+            <a href="https://www.instagram.com/miles.wine.cellars/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.facebook.com/MilesWineCellarsFingerLakesWine/" target="_blank" rel="noopener">Facebook →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Tabora Farm & Winery</span>
+          <span class="meta">~3.7 miles</span>
+          <span class="desc">Come for the food. Seriously. Sandwiches, salads, baked goods from their cafe are the best part. Sit down with food, then walk over for a tasting.</span>
+          <span class="links">
+            <a href="https://www.instagram.com/taborafarmandwinery/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.facebook.com/taborafarmandwinery/" target="_blank" rel="noopener">Facebook →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Glenora Wine Cellars</span>
+          <span class="meta">~4.1 miles</span>
+          <span class="desc">Amazing views of the lake. Wine, beer, slushies (yes), and NA options. They stock local snacks too.</span>
+          <span class="links">
+            <a href="https://www.instagram.com/glenorawine/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.glenora.com/" target="_blank" rel="noopener">Website →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Atwater Vineyards</span>
+          <span class="meta">~4.4 miles · east side of the lake</span>
+          <span class="desc">Great wine—try the pétnat. But honestly, go for the vibes and the sunset. In summer there's live music and a food truck. Snacks available when the truck isn't there.</span>
+          <span class="links">
+            <a href="https://www.instagram.com/atwaterwine/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.facebook.com/AtwaterWinery/" target="_blank" rel="noopener">Facebook →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Fox Run Vineyards</span>
+          <span class="meta">~5.3 miles</span>
+          <span class="desc">Great views, patio out front, always doing something—music, food events. Wine, beer, NA options. On-site cafe.</span>
+          <span class="links">
+            <a href="https://www.instagram.com/foxrunvineyards/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.facebook.com/foxrunvineyards/" target="_blank" rel="noopener">Facebook →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Bellhurst Castle & Winery</span>
+          <span class="meta">~11.9 miles · worth the drive</span>
+          <span class="desc">Worth the drive just to see the property and walk along the water. Beer and wine tastings. Separate bar for cocktails and food.</span>
+          <span class="links">
+            <a href="https://www.instagram.com/belhurstcastleandwinery/" target="_blank" rel="noopener">Instagram →</a>
+            <a href="https://www.facebook.com/belhurstcastle/" target="_blank" rel="noopener">Facebook →</a>
+          </span>
+        </li>
       </ul>
     </div>
   </section>
 
-
-  <!-- ============ TRAILS (researched — DEFAULT ACTIVE PANEL) ============ -->
-  <section class="panel" role="tabpanel" id="panel-trails" data-panel="trails" aria-labelledby="tab-trails">
+  <!-- ============ TRAILS ============ -->
+  <section class="panel" role="tabpanel" id="panel-trails" data-panel="trails" aria-labelledby="tab-trails" hidden>
     <header class="panel-head"><h2><span class="icon">🥾</span>Trails</h2></header>
     <div class="body">
       <p class="lead">A short list of hikes nearby, ranging from easy gorge walks to longer loops in the national forest.</p>
@@ -379,6 +546,15 @@
           <span class="links">
             <a href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" rel="noopener">Park info →</a>
             <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+State+Park" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Seneca Mills Trail & Cascade Falls</span>
+          <span class="meta">~8 min northeast · easy</span>
+          <span class="desc">Short walk to a waterfall and historic mill site. Beautiful and peaceful.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Mills+Trail+Dundee+NY" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
@@ -437,64 +613,476 @@
     </div>
   </section>
 
-
-  <!-- ============ WATERFALLS (placeholder) ============ -->
+  <!-- ============ WATERFALLS ============ -->
   <section class="panel" role="tabpanel" id="panel-waterfalls" data-panel="waterfalls" aria-labelledby="tab-waterfalls" hidden>
     <header class="panel-head"><h2><span class="icon">💧</span>Waterfalls</h2></header>
     <div class="body">
-      <p class="lead">Many of the best waterfalls overlap with the Trails section. Add any standalone favorites here.</p>
+      <p class="lead">Most of these are easy—park and walk or park and look. A few require a short hike. All are worth the drive.</p>
       <ul class="items">
         <li>
-          <span class="placeholder">e.g. Hector Falls (roadside view on Rt 414), Shequaga Falls (Montour Falls village), Taughannock Falls (Ithaca). Confirm before listing.</span>
+          <span class="name">Hector Falls</span>
+          <span class="meta">~11 min north</span>
+          <span class="desc">Roadside waterfall on a busy 55 mph road, so be careful. Park right next to it. Take the time to see it from both sides—the top and the view down to the lake.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Hector+Falls+Hector+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Rainbow Falls</span>
+          <span class="meta">~15 min south (Watkins Glen State Park)</span>
+          <span class="desc">The best waterfall in the state park.</span>
+          <span class="links">
+            <a href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+State+Park" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Eagle Cliff Falls</span>
+          <span class="meta">~18 min south (Havana Glen Park)</span>
+          <span class="desc">Tucked in the back of the park. Easy walk.</span>
+          <span class="links">
+            <a href="https://www.townofmontour.gov/havanaglen" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Havana+Glen+Park+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Templar Falls</span>
+          <span class="meta">~20 min southwest</span>
+          <span class="desc">Off the beaten path. Small waterfall but in a cool spot—you can walk directly in the water at the top of the falls.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Templar+Falls+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Aunt Sarah's Falls</span>
+          <span class="meta">~21 min southwest</span>
+          <span class="desc">Route 14 just south of Watkins Glen. Parking spot right next to it. Easy pull-off.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Aunt+Sarahs+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Shequegua Falls</span>
+          <span class="meta">~22 min west (Montour Falls)</span>
+          <span class="desc">165-foot waterfall right in town. Park and walk up.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Shequegua+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Deckertown Falls</span>
+          <span class="meta">~22 min west (Montour Falls)</span>
+          <span class="desc">Parking at the end of a short dead-end street. Small lot—get there early on nice days.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Deckertown+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
         </li>
       </ul>
     </div>
   </section>
 
-
-  <!-- ============ RESTAURANTS (placeholder) ============ -->
+  <!-- ============ RESTAURANTS (with subsections) ============ -->
   <section class="panel" role="tabpanel" id="panel-restaurants" data-panel="restaurants" aria-labelledby="tab-restaurants" hidden>
     <header class="panel-head"><h2><span class="icon">🍽️</span>Restaurants</h2></header>
     <div class="body">
-      <p class="lead">Where we send guests when they ask. Mix of casual and special-occasion.</p>
+      <p class="lead">Where we send guests when they ask. Mix of casual and special-occasion, all within 15 minutes.</p>
       <ul class="items">
+
+        <!-- COFFEE SUBSECTION -->
+        <li style="padding: 0; border: none;">
+          <div class="subsection-header">☕ Coffee</div>
+          <p style="margin: 8px 0 4px; font-size: 13px; color: var(--muted);">Both spots are downtown and worth the visit for fresh, good coffee.</p>
+        </li>
+
         <li>
-          <span class="placeholder">Add your favorites here — note the cuisine, neighborhood, and whether reservations are recommended.</span>
+          <span class="name">Seneca Sunrise Coffee</span>
+          <span class="meta">~15 min</span>
+          <span class="desc">Off the main road in downtown. Our favorite spot. The coffee is so good. Organic and locally roasted.</span>
+          <span class="links">
+            <a href="https://www.senecasunrisecoffee.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Sunrise+Coffee+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Babes and Buds Cafe</span>
+          <span class="meta">~15 min</span>
+          <span class="desc">Right in downtown. Many coffee options—some trendy, some classics. Plus bites to eat.</span>
+          <span class="links">
+            <a href="https://www.babesnbudsacoffeelounge.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Babes+and+Buds+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <!-- BREAKFAST/LUNCH SUBSECTION -->
+        <li style="padding: 0; border: none;">
+          <div class="subsection-header">🍴 Breakfast & Lunch</div>
+          <p style="margin: 8px 0 4px; font-size: 13px; color: var(--muted);">Quick eats to lingering meals. All within 15 minutes except Tabora, which is worth the drive.</p>
+        </li>
+
+        <li>
+          <span class="name">Tobey's Donuts</span>
+          <span class="meta">~15 min</span>
+          <span class="desc">Must have. Buy their donuts—you won't be disappointed. Simple breakfast: eggs, omelettes, pancakes.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Tobeys+Donuts+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Blackberry Inn Kitchen</span>
+          <span class="meta">~15 min</span>
+          <span class="desc">House-made bagels, sandwiches, and baked goods. Highly recommend.</span>
+          <span class="links">
+            <a href="https://www.theblackberryinnbb.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Blackberry+Inn+Kitchen+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Central Sip</span>
+          <span class="meta">~15 min</span>
+          <span class="desc">Newer to downtown. Coffee, bagels, sandwiches, acai bowls, and tons of drink options.</span>
+          <span class="links">
+            <a href="https://www.centralsipwg.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Central+Sip+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Holy Cow Deli</span>
+          <span class="meta">~16 min</span>
+          <span class="desc">Breakfast sandwiches, lunch/dinner sandwiches.</span>
+          <span class="links">
+            <a href="https://www.holycowmeatmarketanddeli.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Holy+Cow+Deli+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Curly's Family Restaurant</span>
+          <span class="meta">~14 min</span>
+          <span class="desc">Looks like a typical NJ/NY diner. Always packed and busy. Worth trying.</span>
+          <span class="links">
+            <a href="https://www.curlysfamilyrestaurant.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Curlys+Family+Restaurant+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Tabora Farm & Winery — Cafe</span>
+          <span class="meta">~9 min</span>
+          <span class="desc">Quiches, sandwiches, pre-made salads (potato, tomatoes and cucumber, pasta), and baked goods. One of our spots.</span>
+          <span class="links">
+            <a href="https://www.taborafarmandwinery.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Tabora+Farm+Winery+Dundee+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <!-- DINNER SUBSECTION -->
+        <li style="padding: 0; border: none;">
+          <div class="subsection-header">🍽️ Dinner</div>
+          <p style="margin: 8px 0 4px; font-size: 13px; color: var(--muted);">From casual breweries to farm-to-table. Mostly within 15 minutes.</p>
+        </li>
+
+        <li>
+          <span class="name">The Decoy</span>
+          <span class="meta"><1 min</span>
+          <span class="desc">Right around the corner. Local's hot spot, always packed. Good standard food and a solid bar.</span>
+          <span class="links">
+            <a href="https://www.decoyrestaurant.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=The+Decoy+Rock+Stream+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Stonecat Cafe</span>
+          <span class="meta">~5 min</span>
+          <span class="desc">Regional organic fare with a bar. Indoor and deck seating. Unique and classic options. You won't be disappointed.</span>
+          <span class="links">
+            <a href="https://www.stonecatcafe.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Stonecat+Cafe+Hector+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Sapalta</span>
+          <span class="meta">~5 min</span>
+          <span class="desc">Right on the lake with the best views. Farm-to-table, great food, solid cocktails. They recently added Seneca Farms ice cream to the location.</span>
+          <span class="links">
+            <a href="https://sapalta.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Sapalta+Himrod+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Scale House Brewery</span>
+          <span class="meta">~7 min</span>
+          <span class="desc">Worth the drive. Great pizza and appetizers with a view, and beer. Also has wines, ciders, and NA options.</span>
+          <span class="links">
+            <a href="https://www.scalehousebrews.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Scale+House+Brewery+Hector+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Lucky Hare Brewing Bar & Grill</span>
+          <span class="meta">~8 min</span>
+          <span class="desc">On Seneca Lake downtown. Great food, fish fry nights, and live music on weekends. Full bar.</span>
+          <span class="links">
+            <a href="https://www.luckyharebrewing.com/watkins-glen" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Lucky+Hare+Brewing+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Grist Iron Brewery</span>
+          <span class="meta">~10 min</span>
+          <span class="desc">Pizza, some other bites. Beer and cocktails.</span>
+          <span class="links">
+            <a href="https://www.gristironbrewing.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Grist+Iron+Brewing+Burdett+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Jerlando's</span>
+          <span class="meta">~14 min (Watkins Glen)</span>
+          <span class="desc">Pizza, Italian entrees, wraps, and sandwiches. Our spot.</span>
+          <span class="links">
+            <a href="https://jerlandospizza.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Jerlandos+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Graft Wine & Cider Bar</span>
+          <span class="meta">~15 min (Watkins Glen)</span>
+          <span class="desc">Walk-in only, no reservations. Smaller place, great for date night. True farm-to-table style.</span>
+          <span class="links">
+            <a href="https://www.graftwineciderbar.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Graft+Wine+Cider+Bar+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Nickel's Pit BBQ</span>
+          <span class="meta">~15 min (Watkins Glen)</span>
+          <span class="desc">A staple. We love everything here. Take out or dine in.</span>
+          <span class="links">
+            <a href="https://www.nickelspitbbq.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Nickels+Pit+BBQ+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">House of Hong</span>
+          <span class="meta">~15 min (Watkins Glen)</span>
+          <span class="desc">Standard Chinese. Good takeout option when you want Chinese food.</span>
+          <span class="links">
+            <a href="https://houseofhongwg.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=House+of+Hong+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">El Rancho</span>
+          <span class="meta">~15 min (Watkins Glen)</span>
+          <span class="desc">The only Mexican restaurant downtown. Good for takeout or dine in. At night there's often live music or a DJ.</span>
+          <span class="links">
+            <a href="https://www.elrancho-ny.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=El+Rancho+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Seneca Harbor Station</span>
+          <span class="meta">~15 min (Watkins Glen)</span>
+          <span class="desc">Right on Seneca Lake on the harbor. Full menu—seafood, steak, burgers and fries. Full bar. In summer the deck opens up and there's live music.</span>
+          <span class="links">
+            <a href="https://www.explorewatkinsglen.com/Listings/Details/seneca-harbor-station" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Harbor+Station+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Thai Elephant</span>
+          <span class="meta">~15 min (Watkins Glen)</span>
+          <span class="desc">Classic Thai food. (Not to be confused with Green Elephant—yes, there are two restaurants with "Elephant" in the name.) We do takeout, but they have the option to dine in.</span>
+          <span class="links">
+            <a href="https://www.thaielephantsny.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Thai+Elephant+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
         </li>
       </ul>
     </div>
   </section>
 
-
-  <!-- ============ ACTIVITIES (placeholder) ============ -->
+  <!-- ============ ACTIVITIES ============ -->
   <section class="panel" role="tabpanel" id="panel-activities" data-panel="activities" aria-labelledby="tab-activities" hidden>
     <header class="panel-head"><h2><span class="icon">⛵</span>Activities</h2></header>
     <div class="body">
-      <p class="lead">Lake rentals, tours, racetrack, distilleries, antique shops — anything that isn't a winery, trail, or restaurant.</p>
+      <p class="lead">Kayaking, biking, farms, markets, and waterfront. Most within 15 minutes.</p>
       <ul class="items">
         <li>
-          <span class="placeholder">e.g. boat rentals, Watkins Glen International, Captain Bill's lake cruise, Corning Museum of Glass workshops.</span>
+          <span class="name">Clute Park & Seneca Lake Kayak</span>
+          <span class="meta">~10 min</span>
+          <span class="desc">Direct water access. Rent kayaks, paddleboards, or bring your own. Small sandy beach area. Picnic tables, parking.</span>
+          <span class="links">
+            <a href="https://www.explorefl.com/things-to-do/clute-park-access" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Clute+Park+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Sweet Farm</span>
+          <span class="meta">~8 min</span>
+          <span class="desc">U-pick berries in season (strawberries, raspberries, blackberries). Farm stand with freshly picked fruit and homemade jams. Great for a casual morning.</span>
+          <span class="links">
+            <a href="https://www.sweetfarmproduce.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Sweet+Farm+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Finger Lakes Cycle Boats</span>
+          <span class="meta">~11 min</span>
+          <span class="desc">Pedal boats and stand-up paddleboards right on the water. Casual, fun, no experience needed.</span>
+          <span class="links">
+            <a href="https://www.fingerlakescycleboats.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Finger+Lakes+Cycle+Boats+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Summit to Stream</span>
+          <span class="meta">~13 min</span>
+          <span class="desc">Guided hiking and outdoor adventures. Waterfall hikes, nature walks, custom trips.</span>
+          <span class="links">
+            <a href="https://www.summittostream.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Summit+to+Stream+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Yard FLX</span>
+          <span class="meta">~10 min</span>
+          <span class="desc">Axe throwing, cornhole, lawn games. Fun group activity indoors or outside. No experience needed.</span>
+          <span class="links">
+            <a href="https://www.yardflx.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Yard+FLX+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Sunset View Creamery</span>
+          <span class="meta">~18 min</span>
+          <span class="desc">Ice cream, fruit, and pies from local farms. Scenic views, picnic-friendly.</span>
+          <span class="links">
+            <a href="https://www.sunsetviewcreamery.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Sunset+View+Creamery+Odessa+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">The Windmill Farm & Craft Market</span>
+          <span class="meta">~20 min</span>
+          <span class="desc">Farm stand, local crafts, pick-your-own seasonal items. Good browse on a free afternoon.</span>
+          <span class="links">
+            <a href="https://windmillmarketny.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=The+Windmill+Farm+and+Craft+Market+Penn+Yan+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Watkins Glen International</span>
+          <span class="meta">~14 min</span>
+          <span class="desc">Racetrack and motorsports museum. Race weekends draw crowds; off-season you can tour the track.</span>
+          <span class="links">
+            <a href="https://www.theglens.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+International+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Ithaca Farmers Market</span>
+          <span class="meta">~30 min</span>
+          <span class="desc">Year-round Saturday market with produce, baked goods, local vendors, and live music. Worth the drive.</span>
+          <span class="links">
+            <a href="https://www.ithacafarmersmarket.org/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Ithaca+Farmers+Market+Ithaca+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
         </li>
       </ul>
     </div>
   </section>
 
-
-  <!-- ============ ICE CREAM (placeholder) ============ -->
+  <!-- ============ ICE CREAM ============ -->
   <section class="panel" role="tabpanel" id="panel-icecream" data-panel="icecream" aria-labelledby="tab-icecream" hidden>
     <header class="panel-head"><h2><span class="icon">🍦</span>Ice Cream</h2></header>
     <div class="body">
-      <p class="lead">Because every good day ends here.</p>
+      <p class="lead">From hand-scooped classics to farm-fresh custard. Most are minutes away.</p>
       <ul class="items">
         <li>
-          <span class="placeholder">Add your favorite local creameries and stands.</span>
+          <span class="name">Shtayburne Farm Creamery</span>
+          <span class="meta"><1 min · right across the street</span>
+          <span class="desc">Hand-scooped ice cream that's incredibly fresh with seasonal flavors. Plus their award-winning cheese if you want to try it. Easy win.</span>
+          <span class="links">
+            <a href="https://www.shtayburnefarmcreamery.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Shtayburne+Farm+Creamery+Rock+Stream+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Colonial Inn & Creamery</span>
+          <span class="meta">~12 min</span>
+          <span class="desc">Historic inn downtown with hand-scooped ice cream. Straightforward, solid, worth a stop if you're in Watkins Glen.</span>
+          <span class="links">
+            <a href="https://colonialinnwatkinsglen.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Colonial+Inn+Creamery+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Great Escape Ice Cream Parlor</span>
+          <span class="meta">~13 min</span>
+          <span class="desc">Family-owned since 1982. Homemade ice cream with unique flavors. Vegan options available. Indoor and outdoor seating.</span>
+          <span class="links">
+            <a href="https://www.thegreatescapeicecream.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Great+Escape+Ice+Cream+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Glen Dairy Bar</span>
+          <span class="meta">~14 min</span>
+          <span class="desc">A local institution since 1947. Massive menu—flavors, toppings, combinations. Vegan available. Always packed, and it's obvious why.</span>
+          <span class="links">
+            <a href="https://www.watkinsglendairybar.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Glen+Dairy+Bar+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Spotted Duck</span>
+          <span class="meta">~20 min (Penn Yan)</span>
+          <span class="desc">Worth the drive. Farm-fresh, small-batch frozen custard made with local duck eggs and fruit from nearby farms. Seasonal flavors that taste like the Finger Lakes.</span>
+          <span class="links">
+            <a href="https://spottedduck.com/" target="_blank" rel="noopener">Website →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Spotted+Duck+Penn+Yan+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
         </li>
       </ul>
     </div>
   </section>
 
-
-  <!-- ============ DAY TRIPS (researched) ============ -->
+  <!-- ============ DAY TRIPS ============ -->
   <section class="panel" role="tabpanel" id="panel-daytrips" data-panel="daytrips" aria-labelledby="tab-daytrips" hidden>
     <header class="panel-head"><h2><span class="icon">🚗</span>Day Trips — Nearby Towns</h2></header>
     <div class="body">
@@ -566,7 +1154,6 @@
     </div>
   </section>
 
-
   </div><!-- /.panels -->
 
   <div class="disclaimer">
@@ -581,73 +1168,73 @@
 </div>
 
 <script>
-/* Tab switching for the category cards.
-   - Default panel: trails
-   - Deep links work via URL hash (e.g. /index.html#wineries)
-   - Keyboard: arrow keys to move focus, Home/End to jump */
 (function () {
-  var DEFAULT = 'trails';
-  var tablist = document.querySelector('nav.cats[role="tablist"]');
-  if (!tablist) return;
-  var tabs   = Array.prototype.slice.call(tablist.querySelectorAll('a[role="tab"]'));
-  var panels = Array.prototype.slice.call(document.querySelectorAll('section.panel[role="tabpanel"]'));
+  var DEFAULT = 'story';
+  var tablists = document.querySelectorAll('nav.cats[role="tablist"]');
+  if (!tablists) return;
 
-  function tabFor(id)    { return tabs.find(function (t) { return t.getAttribute('data-tab') === id; }); }
-  function isValidId(id) { return !!tabFor(id); }
+  // Initialize all tab lists
+  Array.prototype.forEach.call(tablists, function(tablist) {
+    var tabs   = Array.prototype.slice.call(tablist.querySelectorAll('a[role="tab"]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('section.panel[role="tabpanel"]'));
 
-  function activate(id, opts) {
-    opts = opts || {};
-    if (!isValidId(id)) id = DEFAULT;
-    tabs.forEach(function (t) {
-      var on = t.getAttribute('data-tab') === id;
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.setAttribute('tabindex', on ? '0' : '-1');
-    });
-    panels.forEach(function (p) {
-      var on = p.getAttribute('data-panel') === id;
-      if (on) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
-    });
-    try {
-      if (location.hash !== '#' + id) {
-        history.replaceState(null, '', '#' + id);
+    function tabFor(id)    { return tabs.find(function (t) { return t.getAttribute('data-tab') === id; }); }
+    function isValidId(id) { return !!tabFor(id); }
+
+    function activate(id, opts) {
+      opts = opts || {};
+      if (!isValidId(id)) id = DEFAULT;
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-tab') === id;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.setAttribute('tabindex', on ? '0' : '-1');
+      });
+      panels.forEach(function (p) {
+        var on = p.getAttribute('data-panel') === id;
+        if (on) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
+      });
+      try {
+        if (location.hash !== '#' + id) {
+          history.replaceState(null, '', '#' + id);
+        }
+      } catch (e) { }
+      if (opts.focus) {
+        var el = tabFor(id);
+        if (el) el.focus();
       }
-    } catch (e) { /* old browsers */ }
-    if (opts.focus) {
-      var el = tabFor(id);
-      if (el) el.focus();
     }
-  }
 
-  var initial = (location.hash || '').replace(/^#/, '');
-  activate(initial || DEFAULT, { focus: false });
+    var initial = (location.hash || '').replace(/^#/, '');
+    activate(initial || DEFAULT, { focus: false });
 
-  tablist.addEventListener('click', function (e) {
-    var t = e.target.closest('a[role="tab"]');
-    if (!t) return;
-    e.preventDefault();
-    activate(t.getAttribute('data-tab'), { focus: false });
-  });
+    tablist.addEventListener('click', function (e) {
+      var t = e.target.closest('a[role="tab"]');
+      if (!t) return;
+      e.preventDefault();
+      activate(t.getAttribute('data-tab'), { focus: false });
+    });
 
-  tablist.addEventListener('keydown', function (e) {
-    var current = tabs.indexOf(document.activeElement);
-    if (current < 0) return;
-    var next = current;
-    switch (e.key) {
-      case 'ArrowRight':
-      case 'ArrowDown': next = (current + 1) % tabs.length; break;
-      case 'ArrowLeft':
-      case 'ArrowUp':   next = (current - 1 + tabs.length) % tabs.length; break;
-      case 'Home':      next = 0; break;
-      case 'End':       next = tabs.length - 1; break;
-      case 'Enter':
-      case ' ':
-        e.preventDefault();
-        activate(tabs[current].getAttribute('data-tab'), { focus: false });
-        return;
-      default: return;
-    }
-    e.preventDefault();
-    activate(tabs[next].getAttribute('data-tab'), { focus: true });
+    tablist.addEventListener('keydown', function (e) {
+      var current = tabs.indexOf(document.activeElement);
+      if (current < 0) return;
+      var next = current;
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown': next = (current + 1) % tabs.length; break;
+        case 'ArrowLeft':
+        case 'ArrowUp':   next = (current - 1 + tabs.length) % tabs.length; break;
+        case 'Home':      next = 0; break;
+        case 'End':       next = tabs.length - 1; break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          activate(tabs[current].getAttribute('data-tab'), { focus: false });
+          return;
+        default: return;
+      }
+      e.preventDefault();
+      activate(tabs[next].getAttribute('data-tab'), { focus: true });
+    });
   });
 
   window.addEventListener('hashchange', function () {
