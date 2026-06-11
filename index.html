@@ -193,8 +193,12 @@
     transform: translateY(-1px);
   }
   nav.cats .icon { font-size: 22px; line-height: 1; }
+
+  /* ---- Instagram button text (hide on mobile, show on desktop) ---- */
+  .ig-text { display: none; }
   @media (min-width: 480px) {
     nav.cats { grid-template-columns: repeat(3, 1fr); }
+    .ig-text { display: inline; }
   }
 
   /* ---- Tab panel area ---- */
@@ -352,19 +356,20 @@
   <nav class="cats" role="tablist" aria-label="About the House" data-group="primary">
     <a role="tab" id="tab-story"      data-tab="story"      href="#story"      aria-controls="panel-story"      aria-selected="true"  tabindex="0"><span class="icon">🏠</span>The Story</a>
     <a role="tab" id="tab-things"     data-tab="things"     href="#things"     aria-controls="panel-things"     aria-selected="false" tabindex="-1"><span class="icon">ℹ️</span>Things to Know</a>
-    <a href="https://www.instagram.com/4610thereadinghouse" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; padding: 14px 14px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); font-weight: 600; font-size: 15px; box-shadow: var(--shadow); min-height: 56px; text-decoration: none; transition: border-color .12s ease, background .12s ease;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg>@4610thereadinghouse</a>
+    <a href="https://www.instagram.com/4610thereadinghouse" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; padding: 14px 14px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); font-weight: 600; font-size: 15px; box-shadow: var(--shadow); min-height: 56px; text-decoration: none; transition: border-color .12s ease, background .12s ease;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg><span class="ig-text">@4610thereadinghouse</span></a>
   </nav>
 
   <div class="tab-separator"></div>
 
   <!-- CATEGORY TABS (main navigation) -->
   <nav class="cats" role="tablist" aria-label="Categories" data-group="secondary">
-    <a role="tab" id="tab-wineries"    data-tab="wineries"    href="#wineries"    aria-controls="panel-wineries"    aria-selected="false" tabindex="-1"><span class="icon">🍷</span>Wineries</a>
-    <a role="tab" id="tab-trails"      data-tab="trails"      href="#trails"      aria-controls="panel-trails"      aria-selected="false" tabindex="-1"><span class="icon">🥾</span>Trails</a>
-    <a role="tab" id="tab-waterfalls"  data-tab="waterfalls"  href="#waterfalls"  aria-controls="panel-waterfalls"  aria-selected="false" tabindex="-1"><span class="icon">💧</span>Waterfalls</a>
+    <a role="tab" id="tab-markets"      data-tab="markets"      href="#markets"      aria-controls="panel-markets"      aria-selected="false" tabindex="-1"><span class="icon">🛒</span>Markets & Stores</a>
     <a role="tab" id="tab-restaurants" data-tab="restaurants" href="#restaurants" aria-controls="panel-restaurants" aria-selected="false" tabindex="-1"><span class="icon">🍽️</span>Restaurants</a>
-    <a role="tab" id="tab-activities"  data-tab="activities"  href="#activities"  aria-controls="panel-activities"  aria-selected="false" tabindex="-1"><span class="icon">⛵</span>Activities</a>
     <a role="tab" id="tab-icecream"    data-tab="icecream"    href="#icecream"    aria-controls="panel-icecream"    aria-selected="false" tabindex="-1"><span class="icon">🍦</span>Ice Cream</a>
+    <a role="tab" id="tab-wineries"    data-tab="wineries"    href="#wineries"    aria-controls="panel-wineries"    aria-selected="false" tabindex="-1"><span class="icon">🍷</span>Wineries</a>
+    <a role="tab" id="tab-activities"  data-tab="activities"  href="#activities"  aria-controls="panel-activities"  aria-selected="false" tabindex="-1"><span class="icon">⛵</span>Activities</a>
+    <a role="tab" id="tab-waterfalls"  data-tab="waterfalls"  href="#waterfalls"  aria-controls="panel-waterfalls"  aria-selected="false" tabindex="-1"><span class="icon">💧</span>Waterfalls</a>
+    <a role="tab" id="tab-trails"      data-tab="trails"      href="#trails"      aria-controls="panel-trails"      aria-selected="false" tabindex="-1"><span class="icon">🥾</span>Trails</a>
     <a role="tab" id="tab-daytrips"    data-tab="daytrips"    href="#daytrips"    aria-controls="panel-daytrips"    aria-selected="false" tabindex="-1"><span class="icon">🚗</span>Day Trips</a>
   </nav>
 
@@ -444,317 +449,111 @@
     </div>
   </section>
 
-  <!-- ============ WINERIES ============ -->
-  <section class="panel" role="tabpanel" id="panel-wineries" data-panel="wineries" aria-labelledby="tab-wineries" hidden>
-    <header class="panel-head"><h2><span class="icon">🍷</span>Wineries</h2></header>
+  <!-- ============ MARKETS & STORES ============ -->
+  <section class="panel" role="tabpanel" id="panel-markets" data-panel="markets" aria-labelledby="tab-markets" hidden>
+    <header class="panel-head"><h2><span class="icon">🛒</span>Markets & Stores</h2></header>
     <div class="body">
-      <p class="lead">Seneca Lake has serious wine. Most of these are within 5 miles of the house—you can visit several in an afternoon. Some have food, some have views, all of them have owners and winemakers who know what they're doing.</p>
-
-      <p style="font-weight: 700; font-size: 15px; margin: 16px 0 8px; padding-top: 8px; border-top: 1px solid #D8CFC4; color: #1A1A1A;">🚐 Guided Wine Tours</p>
-      <p style="margin: 8px 0 12px; font-size: 13px; color: #6B7570;">Let someone else drive. Choose from these tour operators for a curated experience of the Seneca Lake Wine Trail.</p>
-
-      <ul class="items">
-        <li>
-          <span class="name">Lakeside Trolley</span>
-          <span class="meta">Departs from Watkins Glen harbor</span>
-          <span class="desc">Ride a vintage trolley and choose the type of wine tour that suits you. A fun and nostalgic way to experience the wine trail.</span>
-          <span class="links">
-            <a href="https://www.lakeside-trolley.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.facebook.com/lakesidetrolley/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-            <a href="https://www.instagram.com/lakesidetrolley/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Main Street Drivers</span>
-          <span class="meta">Your vehicle or theirs</span>
-          <span class="desc">Designated driver handles navigation in your own vehicle. Perfectly curated itineraries tailored to your tastes. Groups of any size, from two to a dozen or more.</span>
-          <span class="links">
-            <a href="https://mainstreetdrivers.com/areas-we-service/finger-lakes-ny/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.facebook.com/MainStreetDrivers/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-            <a href="https://www.instagram.com/mainstreetdrivers/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Crush Beer & Wine Tours</span>
-          <span class="meta">Private and group tours</span>
-          <span class="desc">Professionally chauffeured transportation with custom itineraries designed to showcase Seneca Lake's most celebrated wineries, vineyard views, and tasting rooms.</span>
-          <span class="links">
-            <a href="https://crushbeerwinetours.com/wine-tours/crush-on-seneca-wine-tour/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.facebook.com/Crushbeerwinetours" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-            <a href="https://www.instagram.com/crush_beer_wine_tours/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Winewagen Tours</span>
-          <span class="meta">Private tours · up to 8 passengers</span>
-          <span class="desc">Intimate wine experiences in a comfortable Nissan van. Perfect for small groups looking for a personalized tour.</span>
-          <span class="links">
-            <a href="https://www.winewagentours.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.facebook.com/Winewagen/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-            <a href="https://www.instagram.com/winewagen" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Quality Wine & Brew Tours</span>
-          <span class="meta">Customizable itineraries</span>
-          <span class="desc">Professional driver-tour guides lead you through wine and brew tours of the scenic Finger Lakes. Select your wineries, breweries, and lakes. Our experienced staff will help customize your perfect day.</span>
-          <span class="links">
-            <a href="https://www.qualitywinetours.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.facebook.com/profile.php?id=100057547334017" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-      </ul>
-
-      <p style="font-weight: 700; font-size: 15px; margin: 16px 0 8px; padding-top: 8px; border-top: 1px solid #D8CFC4; color: #1A1A1A;">🍇 Our Favorite Wineries</p>
-      <p style="margin: 8px 0 12px; font-size: 13px; color: #6B7570;">Prefer to explore on your own? Visit these wineries at your own pace.</p>
-
-      <ul class="items">
-        <li>
-          <span class="name">Toast Winery</span>
-          <span class="meta">~0.2 miles · literally down the road</span>
-          <span class="desc">Seasonal pairings (wine and pickles is a thing, and it's great). The owners are usually there and worth talking to.</span>
-          <span class="links">
-            <a href="https://www.toastwineryflx.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/toastwineryflx/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/p/Toast-Winery-100063974925155/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Barnstormer Winery</span>
-          <span class="meta">~0.6 miles · super close</span>
-          <span class="desc">Good wines, nice outdoor space.</span>
-          <span class="links">
-            <a href="https://barnstormerwinery.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/barnstormerwinery/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/BarnstormerWinery/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Miles Wine Cellars</span>
-          <span class="meta">~1.9 miles · accessible by boat</span>
-          <span class="desc">Walk down a steep driveway and you're standing on a dock in the middle of Seneca Lake. The only winery you can reach by boat. Wine, cocktails, beers, frozen drinks.</span>
-          <span class="links">
-            <a href="https://mileswinecellars.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/miles.wine.cellars/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/MilesWineCellarsFingerLakesWine/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Tabora Farm & Winery</span>
-          <span class="meta">~3.7 miles</span>
-          <span class="desc">Come for the food. Seriously. Sandwiches, salads, baked goods from their cafe are the best part. Sit down with food, then walk over for a tasting.</span>
-          <span class="links">
-            <a href="https://www.taborafarmandwinery.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/taborafarmandwinery/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/taborafarmandwinery/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Glenora Wine Cellars</span>
-          <span class="meta">~4.1 miles</span>
-          <span class="desc">Amazing views of the lake. Wine, beer, slushies (yes), and NA options. They stock local snacks too.</span>
-          <span class="links">
-            <a href="https://www.glenora.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/glenorawine/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/GlenoraWineCellars/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Atwater Vineyards</span>
-          <span class="meta">~4.4 miles · east side of the lake</span>
-          <span class="desc">Great wine—try the pétnat. But honestly, go for the vibes and the sunset. In summer there's live music and a food truck. Snacks available when the truck isn't there.</span>
-          <span class="links">
-            <a href="https://www.atwatervineyards.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/atwaterwine/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/AtwaterWinery/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Fox Run Vineyards</span>
-          <span class="meta">~5.3 miles</span>
-          <span class="desc">Great views, patio out front, always doing something—music, food events. Wine, beer, NA options. On-site cafe.</span>
-          <span class="links">
-            <a href="https://foxrunvineyards.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/foxrunvineyards/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/foxrunvineyards/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Bellhurst Castle & Winery</span>
-          <span class="meta">~11.9 miles · worth the drive</span>
-          <span class="desc">Worth the drive just to see the property and walk along the water. Beer and wine tastings. Separate bar for cocktails and food.</span>
-          <span class="links">
-            <a href="https://www.belhurst.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.instagram.com/belhurstcastleandwinery/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
-            <a href="https://www.facebook.com/belhurstcastle/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
-          </span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ TRAILS ============ -->
-  <section class="panel" role="tabpanel" id="panel-trails" data-panel="trails" aria-labelledby="tab-trails" hidden>
-    <header class="panel-head"><h2><span class="icon">🥾</span>Trails</h2></header>
-    <div class="body">
-      <p class="lead">A short list of hikes nearby, ranging from easy gorge walks to longer loops in the national forest.</p>
+      <p class="lead">From local farm stands with fresh produce to nearby chain stores for everything else. We've got you covered for any shopping need.</p>
       <ul class="items">
 
+        <!-- LOCAL FARM STANDS & MARKETS SUBSECTION -->
+        <li style="padding: 0; border: none;">
+          <div class="subsection-header">🌾 Local Farm Stands & Markets</div>
+          <p style="margin: 8px 0 4px; font-size: 13px; color: var(--muted);">Fresh local produce, meats, and specialty items from nearby farms.</p>
+        </li>
+
         <li>
-          <span class="name">Watkins Glen State Park — Gorge Trail</span>
-          <span class="meta">~10 min south · ~2 mi · moderate (many stairs)</span>
-          <span class="desc">Iconic stone path past 19 waterfalls and 200-ft cliffs. The gorge trail is closed in winter; rim trails stay open.</span>
+          <span class="name">Scenic Vista Farms Market & Greenhouse</span>
+          <span class="meta">~3 min</span>
+          <span class="desc">Our favorite nearby farm stand. Fresh fruit and veggies grown there, fresh baked goods (must try the local "fried pies"). They also stock local eggs, milk, meat in limited quantities and is just a few minutes from the house.</span>
           <span class="links">
-            <a href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" rel="noopener">Park info →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+State+Park" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://justplainbusiness.com/scenic-vista-farms-market-greenhouse/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.facebook.com/p/Scenic-Vista-Farm-61577783678824/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+            <a href="https://share.google/cyTdA4jdM5E7gxosw" target="_blank" rel="noopener" title="Google Maps" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm0 19.5c-4.136 0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5-3.364 7.5-7.5 7.5z"></path></svg></a>
           </span>
         </li>
 
         <li>
-          <span class="name">Seneca Mills Trail & Cascade Falls</span>
-          <span class="meta">~8 min northeast · easy</span>
-          <span class="desc">Short walk to a waterfall and historic mill site. Beautiful and peaceful.</span>
+          <span class="name">Dutch Kuntry Store</span>
+          <span class="meta">~14 min</span>
+          <span class="desc">Small local grocery with local food, fruit, vegetables, snacks, and a deli.</span>
           <span class="links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Mills+Trail+Dundee+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://dutchkuntrystore.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/dutchkuntrystore/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
           </span>
         </li>
 
         <li>
-          <span class="name">Havana Glen Park — Eagle Cliff Falls</span>
-          <span class="meta">~15 min south (Montour Falls) · short walk · easy</span>
-          <span class="desc">A small county park with a quick walk in to a 41-ft waterfall — good if you want a waterfall without the Watkins Glen crowds.</span>
+          <span class="name">Timberline Meats</span>
+          <span class="meta">~17 min</span>
+          <span class="desc">Local meat shop that specializes in high-quality, locally sourced meats, including beef, pork, and chicken. Recommended by locals.</span>
           <span class="links">
-            <a href="https://www.townofmontour.gov/havanaglen" target="_blank" rel="noopener">Park info →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Havana+Glen+Park+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://maps.app.goo.gl/hisinTM8FhHsamDv9" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Finger Lakes National Forest — Interloken / Burnt Hill</span>
-          <span class="meta">~25–30 min east (Hector) · 3–12 mi options · easy to moderate</span>
-          <span class="desc">The only national forest in NY. Mix of woods, meadows, and pasture; the Interloken Trail runs ~12 mi north–south, with shorter loops like Burnt Hill (~3.8 mi).</span>
+          <span class="name">Oak Hill Bulk Foods</span>
+          <span class="meta">~20 min</span>
+          <span class="desc">Fresh fruit, veggies, prepared foods, snacks, and more. There is also a cute cafe attached for some food, coffee, and other drinks.</span>
           <span class="links">
-            <a href="https://www.fs.usda.gov/recarea/gmfl/recarea/?recid=80781" target="_blank" rel="noopener">USDA Forest Service →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Hector+Ranger+Station+Hector+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://oakhillbulkfoods.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.facebook.com/OakHillBulkFoods/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+            <a href="https://www.instagram.com/oakhillbulkfoods/?hl=en" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+          </span>
+        </li>
+
+        <!-- GROCERY & GENERAL STORES SUBSECTION -->
+        <li style="padding: 0; border: none;">
+          <div class="subsection-header">🏪 Grocery & General Stores</div>
+          <p style="margin: 8px 0 4px; font-size: 13px; color: var(--muted);">Chain stores for groceries, general supplies, and everyday essentials.</p>
+        </li>
+
+        <li>
+          <span class="name">Tops Friendly Markets</span>
+          <span class="meta">~12 min</span>
+          <span class="desc">The closest grocery store chain with everything in a standard grocery store, right in downtown Watkins Glen.</span>
+          <span class="links">
+            <a href="https://share.google/9eLUMoUmLOBbR4935" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Catharine Valley Trail</span>
-          <span class="meta">multiple access points · flat · easy</span>
-          <span class="desc">Year-round rail trail through Schuyler County for walking, biking, snowshoeing. Free.</span>
+          <span class="name">CVS</span>
+          <span class="meta">~12 min</span>
+          <span class="desc">Right next to Tops Friendly Markets in downtown Watkins Glen.</span>
           <span class="links">
-            <a href="https://parks.ny.gov/visit/state-parks/catharine-valley-trail" target="_blank" rel="noopener">Trail info →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Catharine+Valley+Trail+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=CVS+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Queen Catharine Marsh Loop</span>
-          <span class="meta">~10 min south of Watkins Glen · ~7 mi · level</span>
-          <span class="desc">Quiet wildlife-management-area trail through marsh and woods — good for birding.</span>
+          <span class="name">Walmart</span>
+          <span class="meta">~12 min</span>
+          <span class="desc">Downtown Watkins Glen. If you forget anything from home, this is the place to go. It has a good stock of everything, from wood, propane, to clothes, games, groceries, and more.</span>
           <span class="links">
-            <a href="https://dec.ny.gov/places/catharine-creek-wildlife-management-area" target="_blank" rel="noopener">DEC info →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Queen+Catharine+Marsh+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Walmart+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Seneca Lake State Park — Lakefront Trail</span>
-          <span class="meta">~45 min north (Geneva) · ~4.3 mi · easy/paved</span>
-          <span class="desc">Flat lakefront walk. Pair with a stroll through downtown Geneva.</span>
+          <span class="name">Wegmans (Geneva)</span>
+          <span class="meta">~35 min</span>
+          <span class="desc">Full-service grocery store north of the house with everything you need.</span>
           <span class="links">
-            <a href="https://parks.ny.gov/visit/state-parks/seneca-lake-state-park" target="_blank" rel="noopener">Park info →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Lake+State+Park+Geneva+NY" target="_blank" rel="noopener">Directions →</a>
-          </span>
-        </li>
-
-      </ul>
-      <p class="lead" style="margin-top:14px;">Drive times are approximate from Rock Stream — tap "Directions" for live travel time.</p>
-    </div>
-  </section>
-
-  <!-- ============ WATERFALLS ============ -->
-  <section class="panel" role="tabpanel" id="panel-waterfalls" data-panel="waterfalls" aria-labelledby="tab-waterfalls" hidden>
-    <header class="panel-head"><h2><span class="icon">💧</span>Waterfalls</h2></header>
-    <div class="body">
-      <p class="lead">Most of these are easy—park and walk or park and look. A few require a short hike. All are worth the drive.</p>
-      <ul class="items">
-        <li>
-          <span class="name">Hector Falls</span>
-          <span class="meta">~13 min north</span>
-          <span class="desc">Roadside waterfall on a busy 55 mph road, so be careful. Park right next to it. Take the time to see it from both sides—the top and the view down to the lake.</span>
-          <span class="links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Hector+Falls+Hector+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://share.google/U6Ztxz0HH5fQir7il" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Rainbow Falls</span>
-          <span class="meta">~14 min south (Watkins Glen State Park)</span>
-          <span class="desc">The best waterfall in the state park.</span>
+          <span class="name">Wegmans (Elmira)</span>
+          <span class="meta">~35 min</span>
+          <span class="desc">Full-service grocery store south of the house. If coming from the south, you may pass this location on the way.</span>
           <span class="links">
-            <a href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" rel="noopener">Park info →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+State+Park" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://share.google/wZhNkqhdb3stvSwii" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
-        <li>
-          <span class="name">Eagle Cliff Falls</span>
-          <span class="meta">~18 min south (Havana Glen Park)</span>
-          <span class="desc">Tucked in the back of the park. Easy walk.</span>
-          <span class="links">
-            <a href="https://www.townofmontour.gov/havanaglen" target="_blank" rel="noopener">Park info →</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Havana+Glen+Park+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Templar Falls</span>
-          <span class="meta">~13 min southwest</span>
-          <span class="desc">Off the beaten path. Small waterfall but in a cool spot—you can walk directly in the water at the top of the falls.</span>
-          <span class="links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Templar+Falls+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Aunt Sarah's Falls</span>
-          <span class="meta">~12 min southwest</span>
-          <span class="desc">Route 14 just south of Watkins Glen. Parking spot right next to it. Easy pull-off.</span>
-          <span class="links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Aunt+Sarahs+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Shequaga Falls</span>
-          <span class="meta">~14 min west (Montour Falls)</span>
-          <span class="desc">165-foot waterfall right in town. Park and walk up.</span>
-          <span class="links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Shequaga+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
-          </span>
-        </li>
-
-        <li>
-          <span class="name">Deckertown Falls</span>
-          <span class="meta">~16 min west (Montour Falls)</span>
-          <span class="desc">Parking at the end of a short dead-end street. Small lot—get there early on nice days.</span>
-          <span class="links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Deckertown+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
-          </span>
-        </li>
       </ul>
     </div>
   </section>
@@ -996,6 +795,225 @@
     </div>
   </section>
 
+  <!-- ============ ICE CREAM ============ -->
+  <section class="panel" role="tabpanel" id="panel-icecream" data-panel="icecream" aria-labelledby="tab-icecream" hidden>
+    <header class="panel-head"><h2><span class="icon">🍦</span>Ice Cream</h2></header>
+    <div class="body">
+      <p class="lead">From hand-scooped classics to farm-fresh custard. Most are minutes away.</p>
+      <ul class="items">
+        <li>
+          <span class="name">Shtayburne Farm Creamery</span>
+          <span class="meta"><1 min · right across the street</span>
+          <span class="desc">Hand-scooped ice cream that's incredibly fresh with seasonal flavors. Plus their award-winning cheese if you want to try it. Easy win.</span>
+          <span class="links">
+            <a href="https://www.shtayburnefarmcreamery.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Shtayburne+Farm+Creamery+Rock+Stream+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Colonial Inn & Creamery</span>
+          <span class="meta">~12 min</span>
+          <span class="desc">Historic inn downtown with hand-scooped ice cream. Straightforward, solid, worth a stop if you're in Watkins Glen.</span>
+          <span class="links">
+            <a href="https://colonialinnwatkinsglen.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Colonial+Inn+Creamery+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Great Escape Ice Cream Parlor</span>
+          <span class="meta">~13 min</span>
+          <span class="desc">Family-owned since 1982. Homemade ice cream with unique flavors. Vegan options available. Indoor and outdoor seating.</span>
+          <span class="links">
+            <a href="https://www.thegreatescapeicecream.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Great+Escape+Ice+Cream+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Glen Dairy Bar</span>
+          <span class="meta">~14 min</span>
+          <span class="desc">A local institution since 1947. Massive menu—flavors, toppings, combinations. Vegan available. Always packed, and it's obvious why.</span>
+          <span class="links">
+            <a href="https://www.watkinsglendairybar.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Glen+Dairy+Bar+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Spotted Duck</span>
+          <span class="meta">~20 min (Penn Yan)</span>
+          <span class="desc">Worth the drive. Farm-fresh, small-batch frozen custard made with local duck eggs and fruit from nearby farms. Seasonal flavors that taste like the Finger Lakes.</span>
+          <span class="links">
+            <a href="https://spottedduck.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Spotted+Duck+Penn+Yan+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ WINERIES ============ -->
+  <section class="panel" role="tabpanel" id="panel-wineries" data-panel="wineries" aria-labelledby="tab-wineries" hidden>
+    <header class="panel-head"><h2><span class="icon">🍷</span>Wineries</h2></header>
+    <div class="body">
+      <p class="lead">Seneca Lake has serious wine. Most of these are within 5 miles of the house—you can visit several in an afternoon. Some have food, some have views, all of them have owners and winemakers who know what they're doing.</p>
+
+      <p style="font-weight: 700; font-size: 15px; margin: 16px 0 8px; padding-top: 8px; border-top: 1px solid #D8CFC4; color: #1A1A1A;">🚐 Guided Wine Tours</p>
+      <p style="margin: 8px 0 12px; font-size: 13px; color: #6B7570;">Let someone else drive. Choose from these tour operators for a curated experience of the Seneca Lake Wine Trail.</p>
+
+      <ul class="items">
+        <li>
+          <span class="name">Lakeside Trolley</span>
+          <span class="meta">Departs from Watkins Glen harbor</span>
+          <span class="desc">Ride a vintage trolley and choose the type of wine tour that suits you. A fun and nostalgic way to experience the wine trail.</span>
+          <span class="links">
+            <a href="https://www.lakeside-trolley.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.facebook.com/lakesidetrolley/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+            <a href="https://www.instagram.com/lakesidetrolley/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Main Street Drivers</span>
+          <span class="meta">Your vehicle or theirs</span>
+          <span class="desc">Designated driver handles navigation in your own vehicle. Perfectly curated itineraries tailored to your tastes. Groups of any size, from two to a dozen or more.</span>
+          <span class="links">
+            <a href="https://mainstreetdrivers.com/areas-we-service/finger-lakes-ny/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.facebook.com/MainStreetDrivers/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+            <a href="https://www.instagram.com/mainstreetdrivers/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Crush Beer & Wine Tours</span>
+          <span class="meta">Private and group tours</span>
+          <span class="desc">Professionally chauffeured transportation with custom itineraries designed to showcase Seneca Lake's most celebrated wineries, vineyard views, and tasting rooms.</span>
+          <span class="links">
+            <a href="https://crushbeerwinetours.com/wine-tours/crush-on-seneca-wine-tour/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.facebook.com/Crushbeerwinetours" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+            <a href="https://www.instagram.com/crush_beer_wine_tours/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Winewagen Tours</span>
+          <span class="meta">Private tours · up to 8 passengers</span>
+          <span class="desc">Intimate wine experiences in a comfortable Nissan van. Perfect for small groups looking for a personalized tour.</span>
+          <span class="links">
+            <a href="https://www.winewagentours.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.facebook.com/Winewagen/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+            <a href="https://www.instagram.com/winewagen" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Quality Wine & Brew Tours</span>
+          <span class="meta">Customizable itineraries</span>
+          <span class="desc">Professional driver-tour guides lead you through wine and brew tours of the scenic Finger Lakes. Select your wineries, breweries, and lakes. Our experienced staff will help customize your perfect day.</span>
+          <span class="links">
+            <a href="https://www.qualitywinetours.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.facebook.com/profile.php?id=100057547334017" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+      </ul>
+
+      <p style="font-weight: 700; font-size: 15px; margin: 16px 0 8px; padding-top: 8px; border-top: 1px solid #D8CFC4; color: #1A1A1A;">🍇 Our Favorite Wineries</p>
+      <p style="margin: 8px 0 12px; font-size: 13px; color: #6B7570;">Prefer to explore on your own? Visit these wineries at your own pace.</p>
+
+      <ul class="items">
+        <li>
+          <span class="name">Toast Winery</span>
+          <span class="meta">~0.2 miles · literally down the road</span>
+          <span class="desc">Seasonal pairings (wine and pickles is a thing, and it's great). The owners are usually there and worth talking to.</span>
+          <span class="links">
+            <a href="https://www.toastwineryflx.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/toastwineryflx/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/p/Toast-Winery-100063974925155/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Barnstormer Winery</span>
+          <span class="meta">~0.6 miles · super close</span>
+          <span class="desc">Good wines, nice outdoor space.</span>
+          <span class="links">
+            <a href="https://barnstormerwinery.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/barnstormerwinery/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/BarnstormerWinery/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Miles Wine Cellars</span>
+          <span class="meta">~1.9 miles · accessible by boat</span>
+          <span class="desc">Walk down a steep driveway and you're standing on a dock in the middle of Seneca Lake. The only winery you can reach by boat. Wine, cocktails, beers, frozen drinks.</span>
+          <span class="links">
+            <a href="https://mileswinecellars.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/miles.wine.cellars/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/MilesWineCellarsFingerLakesWine/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Tabora Farm & Winery</span>
+          <span class="meta">~3.7 miles</span>
+          <span class="desc">Come for the food. Seriously. Sandwiches, salads, baked goods from their cafe are the best part. Sit down with food, then walk over for a tasting.</span>
+          <span class="links">
+            <a href="https://www.taborafarmandwinery.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/taborafarmandwinery/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/taborafarmandwinery/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Glenora Wine Cellars</span>
+          <span class="meta">~4.1 miles</span>
+          <span class="desc">Amazing views of the lake. Wine, beer, slushies (yes), and NA options. They stock local snacks too.</span>
+          <span class="links">
+            <a href="https://www.glenora.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/glenorawine/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/GlenoraWineCellars/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Atwater Vineyards</span>
+          <span class="meta">~4.4 miles · east side of the lake</span>
+          <span class="desc">Great wine—try the pétnat. But honestly, go for the vibes and the sunset. In summer there's live music and a food truck. Snacks available when the truck isn't there.</span>
+          <span class="links">
+            <a href="https://www.atwatervineyards.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/atwaterwine/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/AtwaterWinery/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Fox Run Vineyards</span>
+          <span class="meta">~5.3 miles</span>
+          <span class="desc">Great views, patio out front, always doing something—music, food events. Wine, beer, NA options. On-site cafe.</span>
+          <span class="links">
+            <a href="https://foxrunvineyards.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/foxrunvineyards/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/foxrunvineyards/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Bellhurst Castle & Winery</span>
+          <span class="meta">~11.9 miles · worth the drive</span>
+          <span class="desc">Worth the drive just to see the property and walk along the water. Beer and wine tastings. Separate bar for cocktails and food.</span>
+          <span class="links">
+            <a href="https://www.belhurst.com/" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/belhurstcastleandwinery/" target="_blank" rel="noopener" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"></path><circle cx="17.5" cy="6.5" r="1.5"></circle></svg></a>
+            <a href="https://www.facebook.com/belhurstcastle/" target="_blank" rel="noopener" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ============ ACTIVITIES ============ -->
   <section class="panel" role="tabpanel" id="panel-activities" data-panel="activities" aria-labelledby="tab-activities" hidden>
     <header class="panel-head"><h2><span class="icon">⛵</span>Activities</h2></header>
@@ -1106,62 +1124,158 @@
     </div>
   </section>
 
-  <!-- ============ ICE CREAM ============ -->
-  <section class="panel" role="tabpanel" id="panel-icecream" data-panel="icecream" aria-labelledby="tab-icecream" hidden>
-    <header class="panel-head"><h2><span class="icon">🍦</span>Ice Cream</h2></header>
+  <!-- ============ WATERFALLS ============ -->
+  <section class="panel" role="tabpanel" id="panel-waterfalls" data-panel="waterfalls" aria-labelledby="tab-waterfalls" hidden>
+    <header class="panel-head"><h2><span class="icon">💧</span>Waterfalls</h2></header>
     <div class="body">
-      <p class="lead">From hand-scooped classics to farm-fresh custard. Most are minutes away.</p>
+      <p class="lead">Most of these are easy—park and walk or park and look. A few require a short hike. All are worth the drive.</p>
       <ul class="items">
         <li>
-          <span class="name">Shtayburne Farm Creamery</span>
-          <span class="meta"><1 min · right across the street</span>
-          <span class="desc">Hand-scooped ice cream that's incredibly fresh with seasonal flavors. Plus their award-winning cheese if you want to try it. Easy win.</span>
+          <span class="name">Hector Falls</span>
+          <span class="meta">~13 min north</span>
+          <span class="desc">Roadside waterfall on a busy 55 mph road, so be careful. Park right next to it. Take the time to see it from both sides—the top and the view down to the lake.</span>
           <span class="links">
-            <a href="https://www.shtayburnefarmcreamery.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Shtayburne+Farm+Creamery+Rock+Stream+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Hector+Falls+Hector+NY" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Colonial Inn & Creamery</span>
-          <span class="meta">~12 min</span>
-          <span class="desc">Historic inn downtown with hand-scooped ice cream. Straightforward, solid, worth a stop if you're in Watkins Glen.</span>
+          <span class="name">Rainbow Falls</span>
+          <span class="meta">~14 min south (Watkins Glen State Park)</span>
+          <span class="desc">The best waterfall in the state park.</span>
           <span class="links">
-            <a href="https://colonialinnwatkinsglen.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Colonial+Inn+Creamery+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+State+Park" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Great Escape Ice Cream Parlor</span>
-          <span class="meta">~13 min</span>
-          <span class="desc">Family-owned since 1982. Homemade ice cream with unique flavors. Vegan options available. Indoor and outdoor seating.</span>
+          <span class="name">Eagle Cliff Falls</span>
+          <span class="meta">~18 min south (Havana Glen Park)</span>
+          <span class="desc">Tucked in the back of the park. Easy walk.</span>
           <span class="links">
-            <a href="https://www.thegreatescapeicecream.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Great+Escape+Ice+Cream+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://www.townofmontour.gov/havanaglen" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Havana+Glen+Park+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Glen Dairy Bar</span>
-          <span class="meta">~14 min</span>
-          <span class="desc">A local institution since 1947. Massive menu—flavors, toppings, combinations. Vegan available. Always packed, and it's obvious why.</span>
+          <span class="name">Templar Falls</span>
+          <span class="meta">~13 min southwest</span>
+          <span class="desc">Off the beaten path. Small waterfall but in a cool spot—you can walk directly in the water at the top of the falls.</span>
           <span class="links">
-            <a href="https://www.watkinsglendairybar.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Glen+Dairy+Bar+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Templar+Falls+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
 
         <li>
-          <span class="name">Spotted Duck</span>
-          <span class="meta">~20 min (Penn Yan)</span>
-          <span class="desc">Worth the drive. Farm-fresh, small-batch frozen custard made with local duck eggs and fruit from nearby farms. Seasonal flavors that taste like the Finger Lakes.</span>
+          <span class="name">Aunt Sarah's Falls</span>
+          <span class="meta">~12 min southwest</span>
+          <span class="desc">Route 14 just south of Watkins Glen. Parking spot right next to it. Easy pull-off.</span>
           <span class="links">
-            <a href="https://spottedduck.com/" target="_blank" rel="noopener">Website</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Spotted+Duck+Penn+Yan+NY" target="_blank" rel="noopener">Directions →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Aunt+Sarahs+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Shequaga Falls</span>
+          <span class="meta">~14 min west (Montour Falls)</span>
+          <span class="desc">165-foot waterfall right in town. Park and walk up.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Shequaga+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Deckertown Falls</span>
+          <span class="meta">~16 min west (Montour Falls)</span>
+          <span class="desc">Parking at the end of a short dead-end street. Small lot—get there early on nice days.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Deckertown+Falls+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
           </span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ============ TRAILS ============ -->
+  <section class="panel" role="tabpanel" id="panel-trails" data-panel="trails" aria-labelledby="tab-trails" hidden>
+    <header class="panel-head"><h2><span class="icon">🥾</span>Trails</h2></header>
+    <div class="body">
+      <p class="lead">A short list of hikes nearby, ranging from easy gorge walks to longer loops in the national forest.</p>
+      <ul class="items">
+
+        <li>
+          <span class="name">Watkins Glen State Park — Gorge Trail</span>
+          <span class="meta">~10 min south · ~2 mi · moderate (many stairs)</span>
+          <span class="desc">Iconic stone path past 19 waterfalls and 200-ft cliffs. The gorge trail is closed in winter; rim trails stay open.</span>
+          <span class="links">
+            <a href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Watkins+Glen+State+Park" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Seneca Mills Trail & Cascade Falls</span>
+          <span class="meta">~8 min northeast · easy</span>
+          <span class="desc">Short walk to a waterfall and historic mill site. Beautiful and peaceful.</span>
+          <span class="links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Mills+Trail+Dundee+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Havana Glen Park — Eagle Cliff Falls</span>
+          <span class="meta">~15 min south (Montour Falls) · short walk · easy</span>
+          <span class="desc">A small county park with a quick walk in to a 41-ft waterfall — good if you want a waterfall without the Watkins Glen crowds.</span>
+          <span class="links">
+            <a href="https://www.townofmontour.gov/havanaglen" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Havana+Glen+Park+Montour+Falls+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Finger Lakes National Forest — Interloken / Burnt Hill</span>
+          <span class="meta">~25–30 min east (Hector) · 3–12 mi options · easy to moderate</span>
+          <span class="desc">The only national forest in NY. Mix of woods, meadows, and pasture; the Interloken Trail runs ~12 mi north–south, with shorter loops like Burnt Hill (~3.8 mi).</span>
+          <span class="links">
+            <a href="https://www.fs.usda.gov/recarea/gmfl/recarea/?recid=80781" target="_blank" rel="noopener">USDA Forest Service →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Hector+Ranger+Station+Hector+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Catharine Valley Trail</span>
+          <span class="meta">multiple access points · flat · easy</span>
+          <span class="desc">Year-round rail trail through Schuyler County for walking, biking, snowshoeing. Free.</span>
+          <span class="links">
+            <a href="https://parks.ny.gov/visit/state-parks/catharine-valley-trail" target="_blank" rel="noopener">Trail info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Catharine+Valley+Trail+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Queen Catharine Marsh Loop</span>
+          <span class="meta">~10 min south of Watkins Glen · ~7 mi · level</span>
+          <span class="desc">Quiet wildlife-management-area trail through marsh and woods — good for birding.</span>
+          <span class="links">
+            <a href="https://dec.ny.gov/places/catharine-creek-wildlife-management-area" target="_blank" rel="noopener">DEC info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Queen+Catharine+Marsh+Watkins+Glen+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+        <li>
+          <span class="name">Seneca Lake State Park — Lakefront Trail</span>
+          <span class="meta">~45 min north (Geneva) · ~4.3 mi · easy/paved</span>
+          <span class="desc">Flat lakefront walk. Pair with a stroll through downtown Geneva.</span>
+          <span class="links">
+            <a href="https://parks.ny.gov/visit/state-parks/seneca-lake-state-park" target="_blank" rel="noopener">Park info →</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Seneca+Lake+State+Park+Geneva+NY" target="_blank" rel="noopener">Directions →</a>
+          </span>
+        </li>
+
+      </ul>
+      <p class="lead" style="margin-top:14px;">Drive times are approximate from Rock Stream — tap "Directions" for live travel time.</p>
     </div>
   </section>
 
